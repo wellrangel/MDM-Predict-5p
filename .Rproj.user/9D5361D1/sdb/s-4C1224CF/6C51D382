@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#0.7093023 com altura\n#0.6976744 sem altura\n\nlibrary(h2o)\nlibrary(ggplot2)\nlibrary(sqldf)\n\nDLSemGrid<-function(h2o, treino.hex, validacao.hex, teste.hex, x, y)\n{\n\n\n\ndl_fit3 <- h2o.deeplearning(x = x,\n                            y = y,\n                            training_frame = treino.hex,\n                            validation_frame = validacao.hex,\n                            model_id = \"dl_fit3\",\n                            seed = 1234,\n                            epochs = 20,\n                            #score_interval = 1,           #used for early stopping\n                            #stopping_rounds = 3,          #used for early stopping\n                            #stopping_metric = \"MSE\",      #used for early stopping\n                            #stopping_tolerance = 0.0005,  #used for early stopping\n                            nfolds = 10,\n                            variable_importances=T)\n\n\n\n\ndl_fit3\nplot(dl_fit3, \n     timestep = \"epochs\", \n     metric = \"rmse\")\nh2o.mse(dl_fit3)\n\nmy_varimpDL <- h2o.varimp(dl_fit3)\n\n\n\nbarplot(my_varimpDL$scaled_importance,\n        names.arg = my_varimpDL$variable,\n        space = 1,\n        las = 2,\n        main = \"Variable Importance: Deep Learning\")\n\n\np <- ggplot(data = my_varimpDL, aes(x = variable, y =scaled_importance ))\np <- p + geom_bar(stat = \"identity\")\np <- p + coord_flip()\np\n\nh2o.varimp(dl_fit3)\n#plot(my_varimpDL)\n\nplot(dl_fit3)\n\n\ndl_perf3 <- h2o.performance(model = dl_fit3,\n                            newdata = teste.hex)\n\n# Print model performance\ndl_perf3\n\nh2o.auc(dl_perf3, train = FALSE, valid = FALSE, xval = FALSE)\n\nh2o.mse(dl_perf3, valid = TRUE)\n\n\nh2o.table(treino.hex$posicao)\nh2o.table(validacao.hex$posicao)\nh2o.table(teste.hex$posicao)\n\n\n  finaldl_predictions<-h2o.predict(\n  object = dl_fit3\n  ,newdata = teste.hex)\n\nh2o.hit_ratio_table(dl_fit3,valid = T)[1,2]             ## validation set accuracy\n\nreturn (mean(pred2$predict==teste.hex$posicao))\n\n}",
+    "created" : 1498504524654.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "639971347",
+    "id" : "6C51D382",
+    "lastKnownWriteTime" : 1498840667,
+    "last_content_update" : 1498840667752,
+    "path" : "~/Downloads/MDM/MDM Predict 5p/scripts/h2oDeepLearning.R",
+    "project_path" : "scripts/h2oDeepLearning.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

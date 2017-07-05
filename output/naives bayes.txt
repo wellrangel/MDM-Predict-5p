@@ -1,0 +1,123 @@
+Naive Bayes
+
+> options(scipen=20)
+
+> #nao ler toda hora
+> if (!file.exists("dadosOriginalCSV")) {
++   dadosOriginalCSV <- readData();
++   
++ }
+
+> treino <- getTreinoData(dadosOriginalCSV)
+
+> validacao <- getValidacaoData(dadosOriginalCSV)
+
+> teste <- getTesteData(dadosOriginalCSV)
+
+> treino.hex  <- as.h2o(treino) # convertendo df para formato h2o
+  |======================================================================================================================================| 100%
+
+> validacao.hex  <- as.h2o(validacao) 
+  |======================================================================================================================================| 100%
+
+> teste.hex  <- as.h2o(teste) 
+  |======================================================================================================================================| 100%
+
+> x <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,"posicao", "ts_per", "eFG_per","ASTPer", "TurPer", "FTPer", "FG_per", "PirPer", "minutos_pa ..." ... [TRUNCATED] 
+
+> y <- "posicao"
+
+> #hyper_parameters = list(ntrees = ntrees_opts, learn_rate = learn_rate_opts)
+> 
+> 
+> 
+> 
+> # specify the list of paramters
+> hyper_parametersNB <- l .... [TRUNCATED] 
+
+> gridNB <- h2o.grid("naivebayes", grid_id="naivebayes_grid_test", 
++                    x=x, 
++                    y=y, 
++                    trainin .... [TRUNCATED] 
+  |======================================================================================================================================| 100%
+
+> nb_sorted_grid <- h2o.getGrid(grid_id = "naivebayes_grid_test", sort_by = "accuracy", decreasing = TRUE)
+
+> print(nb_sorted_grid)
+H2O Grid Details
+================
+
+Grid ID: naivebayes_grid_test 
+Used hyper parameters: 
+  -  laplace 
+  -  seed 
+Number of models: 7 
+Number of failed models: 0 
+
+Hyper-Parameter Search Summary: ordered by decreasing accuracy
+  laplace seed                    model_ids           accuracy
+1     0.0 1234 naivebayes_grid_test_model_0 0.5718085106382979
+2     1.0 1234 naivebayes_grid_test_model_2 0.5718085106382979
+3     0.5 1234 naivebayes_grid_test_model_1 0.5718085106382979
+4     3.0 1234 naivebayes_grid_test_model_4 0.5704787234042553
+5     2.0 1234 naivebayes_grid_test_model_3 0.5704787234042553
+6     4.0 1234 naivebayes_grid_test_model_5 0.5704787234042553
+7     5.0 1234 naivebayes_grid_test_model_6 0.5704787234042553
+
+> #grid_models <- lapply(grid@model_ids, function(mid) {
+> #  model = h2o.getModel(mid)
+> #})
+> 
+> 
+> # Grab the model_id based in AUC
+> best_nb_model .... [TRUNCATED] 
+
+> # The best model
+> best_nb <- h2o.getModel(best_nb_model_id)
+
+> h2o.confusionMatrix(best_nb, valid = TRUE, metrics = 'accuracy')
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala          6         13       1      12    4 0.8333 =  30 / 36
+AlaArmador   1          8       1       6    0 0.5000 =   8 / 16
+AlaPivo      2          3       7       5    7 0.7083 =  17 / 24
+Armador      1          1       0      26    0 0.0714 =   2 / 28
+Pivo         0          0       4       1   32 0.1351 =   5 / 37
+Totals      10         25      13      50   43 0.4397 = 62 / 141
+
+> model = best_nb
+
+> pred2 = h2o.predict(object = model, newdata = teste.hex)
+  |======================================================================================================================================| 100%
+
+> dataset_pred = as.data.frame(pred2)
+
+> final <- cbind(dataset_pred, teste ) 
+
+> perf <- h2o.performance(model, teste.hex)
+
+> h2o.confusionMatrix(perf)
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         11          9       2      12    1 0.6857 =  24 / 35
+AlaArmador   4          6       0       3    0 0.5385 =   7 / 13
+AlaPivo      2          1      12       0    6 0.4286 =   9 / 21
+Armador      1          1       0      23    0 0.0800 =   2 / 25
+Pivo         0          1       4       2   20 0.2593 =   7 / 27
+Totals      18         18      18      40   27 0.4050 = 49 / 121
+
+> # Summary of the best model
+> summary(pred2, exact_quantiles=TRUE)
+ predict        Ala                             AlaArmador          AlaPivo             Armador              Pivo               
+ Armador   :40  Min.   :0.0000000000000003594   Min.   :1.016e-49   Min.   :7.104e-29   Min.   :7.261e-302   Min.   :1.111e-53  
+ Pivo      :27  1st Qu.:0.0001196302600180000   1st Qu.:8.437e-08   1st Qu.:1.021e-05   1st Qu.: 4.222e-37   1st Qu.:1.356e-10  
+ Ala       :18  Median :0.0102712601081000002   Median :4.682e-03   Median :7.854e-03   Median : 6.445e-05   Median :9.640e-05  
+ AlaArmador:18  Mean   :0.1600673780400000135   Mean   :1.547e-01   Mean   :1.559e-01   Mean   : 3.208e-01   Mean   :2.084e-01  
+ AlaPivo   :18  3rd Qu.:0.1070371429079999964   3rd Qu.:1.063e-01   3rd Qu.:1.735e-01   3rd Qu.: 8.646e-01   3rd Qu.:1.960e-01  
+                Max.   :0.9999999653840000446   Max.   :9.895e-01   Max.   :9.995e-01   Max.   : 1.000e+00   Max.   :9.999e-01  
+
+> mean(pred2$predict==teste.hex$posicao)
+[1] 0.5950413
+
+> h2o.shutdown(prompt=FALSE)
+[1] TRUE

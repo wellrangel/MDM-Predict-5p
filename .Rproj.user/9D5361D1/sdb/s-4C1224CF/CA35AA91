@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(plyr)\nlibrary(party)\nlibrary(reshape2)\nlibrary(gplots)\nlibrary(gtools)\nlibrary(plyr)\nrequire(stringi)\n\n\nsource(\"scripts/functions.R\")\nsource(\"scripts/grid_RandomForest.R\")\nsource(\"scripts/gridGM.R\")\nsource(\"scripts/grid_naivebayes.R\")\nsource(\"scripts/gridDL.R\")\n\nh2o.init(nthreads = -1)\nh2o.clusterInfo()\n\noptions(scipen=20)\n\n#nao ler toda hora\nif (!file.exists(\"dadosOriginalCSV\")) {\n  dadosOriginalCSV <- readData();\n\n}\n\n\n\ninputOutputType <- function()\n{\n  outputType <- ask(\"Select an option? 1 - Random Forest, 2 - GBM, 3 - Deep Learning, 4 - Naive Baiyes\")\n  outputType <- as.numeric(outputType)\n  return (outputType)\n} \n\nmethod <- inputOutputType()\n\ncat(\"You chose\", method)\n\ntreino <- getTreinoData(dadosOriginalCSV)\nvalidacao <- getValidacaoData(dadosOriginalCSV)\nteste <- getTesteData(dadosOriginalCSV)\n\ntreino.hex  <- as.h2o(treino) # convertendo df para formato h2o\nvalidacao.hex  <- as.h2o(validacao) \nteste.hex  <- as.h2o(teste) \n\nx <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,\"posicao\", \"ts_per\", \"eFG_per\",\"ASTPer\", \"TurPer\", \"FTPer\", \"FG_per\", \"PirPer\", \"minutos_partida\", \"idade\", \"id_jogador\",\"id_partida\", \"data_nascimento\", \"violacao\", \"faltas_recebidas\" ))  #retirando colunas nao necessarias ao processo\ny <- \"posicao\"\n\n\nif (method == 1){\n  #Random Forest  \n  print(RF(h2o, treino.hex, validacao.hex, teste.hex,x, y ))\n}else if (method == 2){\n  # GBM\n  print(GBM(h2o, treino.hex, validacao.hex, teste.hex,x, y ))\n}else if (method == 3){\n  # Deep Learning\n  print(DL(h2o, treino.hex, validacao.hex, teste.hex,x, y ))\n}else if (method == 4){\n  #Naive Baiyes\n  print(NB(h2o, treino.hex, validacao.hex, teste.hex,x, y ))\n}\n\nshutDownQuitH2o(h2o)\n",
+    "created" : 1498839095095.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4234701164",
+    "id" : "CA35AA91",
+    "lastKnownWriteTime" : 1498856248,
+    "last_content_update" : 1498856248028,
+    "path" : "~/Downloads/MDM/MDM Predict 5p/scripts/principalMenu.R",
+    "project_path" : "scripts/principalMenu.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\ninitH2o<-function()\n{\n \n\n  h2o.init()\n  \n  h2o.init(nthreads = -1)\n  h2o.clusterInfo()\n  \n  options(scipen=20)\n  return (h2o);\n}\nshutDownQuitH2o<-function(h2o)\n{\n  \nh2o.shutdown(prompt=FALSE)\n\n}\nreadData<-function()\n{\n  \n  #lendo cvs com todos os dados\n  totaldados <- read.csv(\"data/agregadoPorTemporadaSTATS.csv\", sep=\",\", stringsAsFactors=FALSE)\n  \n  \n  totaldados[is.na(totaldados)] <- 0\n  totaldados <- totaldados[totaldados$id_jogador > 0,]\n  \n  #todos jogadores com pelo menos 10 partidas por temporada\n  \n  totaldados[,c(\"posicao\")] <- as.factor(totaldados[,c(\"posicao\")])\n  \n  #totaldados$posicao <- as.factor(totaldados$posicao)\n  #totaldados$violacao <- as.factor(totaldados$violacao)\n  #totaldados$faltas_recebidas <- as.factor(totaldados$faltas_recebidas)\n  \n  #totaldados$posicaoInt <- as.integer(totaldados$posicao)\n  #removendo jogadores de posicao nao definida\n  \n  #removendo jogadores de posicao nao definida\n  totaldados <- totaldados[totaldados$posicao != \"NOTFOUND\",]\n  \n  return(totaldados);\n  \n}\n\ngetTreinoData<-function(totaldados)\n{\n  #separando dados de treino com todas as temporadas exceto as duas ultimas\n  treino = totaldados[totaldados$nome_temporada != \"T20142015\",]\n  treino = treino[treino$nome_temporada != \"T20152016\",]\n\n  return (treino)\n}\n\ngetValidacaoData<-function(totaldados)\n{\n  \n  #separando dados de validacao com a penultima temporada\n  validacao = totaldados[totaldados$nome_temporada == \"T20142015\",]\n  \n  return (validacao)\n}\n\ngetTesteData<-function(totaldados)\n{\n  \n  #separando dados de teste com a ultima temporada\n  teste = totaldados[totaldados$nome_temporada == \"T20152016\",]\n  \n  \n  return (teste)\n}\n\n\n\n",
+    "created" : 1498839346981.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1461064693",
+    "id" : "78D48EBF",
+    "lastKnownWriteTime" : 1498840096,
+    "last_content_update" : 1498840096488,
+    "path" : "~/Downloads/MDM/MDM Predict 5p/scripts/functions.R",
+    "project_path" : "scripts/functions.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

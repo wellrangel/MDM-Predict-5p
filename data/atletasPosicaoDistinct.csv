@@ -1,0 +1,807 @@
+"","id_jogador","nome_jogador","posicao","altura","peso"
+"1",61,"Luiz Felipe Faria Azevedo Filho","Ala","1.9",NA
+"2",736,"Johnnie Nascimento S. Reis","Ala","1.85",NA
+"3",138,"Luis Fernando da Silva","Ala/Armador","1.83","84kg"
+"4",178,"Marcos Vinícius Inácio","Pivô","2.05","120kg"
+"5",275,"Arnaldo De Souza Moreira Filho","Ala/Armador",NA,"87kg"
+"6",277,"Rafael Carlos Stabile Silva","Ala","1.95","100kg"
+"7",1059,"Ricardo Santos Gaspar","Ala/Pivô","2.05",NA
+"8",21,"Felipe Gustavo Da Silva","Armador","1.87",NA
+"9",335,"Márcio Faria De Azevedo","Armador","0",NA
+"10",23,"Arlindo Gomes Baltazar Neto","Ala/Armador",NA,"76kg"
+"11",339,"Amiel Morejon Vega","Ala/Pivô","0",NA
+"12",59,"Manuil Egídio Leal De Souza","Pivô","2.13",NA
+"13",351,"André Luiz Quirino Pereira","Pivô","2.05","105kg"
+"14",131,"Julio Cesar De Toledo","Ala/Pivô","0",NA
+"15",60,"Robson Coimbra Vesper","Ala","1.95",NA
+"16",172,"Lucas Moura Costa","Ala","1.86",NA
+"17",216,"Renan Santos Lenz","Pivô",NA,"102kg"
+"18",276,"Henrique Miguel Nunes","Armador","0",NA
+"19",278,"Diego Dos Santos Augusto","Pivô","1.75",NA
+"20",325,"Omar Kennedy Bertolin Pereira","Pivô","2.03",NA
+"21",22,"Francisco Tardivo Delben","Ala/Pivô","2.02",NA
+"22",338,"Leonardo De Oliveira Gomes","Armador","0",NA
+"23",58,"Alexandre Henrique Santos Pinheiro","Armador","1.85","89kg"
+"24",341,"Guilherme Schneider","Ala",NA,"85kg"
+"25",442,"Joseph Delano Shipp Iii","Ala/Pivô","0",NA
+"26",267,"Eduardo Magalhães Machado","Ala/Armador",NA,"90kg"
+"27",140,"Eduardo Mariano de Oliveira","Ala","1.93","95kg"
+"28",286,"Eduardo Augusto Reis Baeta","Ala","1.95",NA
+"29",323,"Thiago Fabiano Da Silva Pereira","Armador","1.91",NA
+"30",166,"Vinícius Villela Gobor","Armador",NA,"90kg"
+"31",34,"Márcio Santos Cipriano","Ala/Pivô","2",NA
+"32",104,"Paulo Rogerio Nery","Armador","1.9",NA
+"33",449,"Fernando Feres Penna","Armador","1.89",NA
+"34",293,"Daniel Fonseca Barreto Soares","Armador","1.9",NA
+"35",269,"Antwine Cyprian Williams","Ala","1.91",NA
+"36",288,"Fernando Ferreira Dos Reis","Armador","1.86",NA
+"37",352,"Anderson Jose De Oliveira","Pivô","2.02",NA
+"38",168,"Guilherme Santos Hubner","Ala/Pivô","2.1","115kg"
+"39",101,"Thiago Melo","Armador","1.77",NA
+"40",36,"José Estevam Ferreira Junior","Pivô","2.11",NA
+"41",213,"Leandro Sedenir Buboltz","Ala/Armador","2",NA
+"42",331,"Bruno Machado Pinto E Silva","Armador","0",NA
+"43",294,"Flavio Aurélio Dos Santos Soares","Armador","1.87",NA
+"44",290,"Nilo Rodrigues da Costa Júnior","Ala","1.98",NA
+"45",187,"Murilo Becker da Rosa","Pivô","2.08","115kg"
+"46",106,"Rodrigo Reis Silva","Pivô","2.06",NA
+"47",39,"Diego Pinheiro Da Silva","Ala","1.95",NA
+"48",300,"Thulius Kreling Da Rosa","Armador","0",NA
+"49",354,"Júlio César Pereira Correa","Armador","0",NA
+"50",314,"Luis Fernando Lima dos Santos","Ala","1.93",NA
+"51",481,"Alex Ribeiro Garcia","Ala","1.9","100kg"
+"52",189,"Raul Togni Neto","Armador","1.84",NA
+"53",118,"Bruno Enrico Mortari","Ala","1.86",NA
+"54",43,"Shilton Alessanco dos Santos","Pivô","1.98","112kg"
+"55",79,"Flavio Henrique Alves","Ala/Pivô","1.95",NA
+"56",304,"Icaro Parisotto","Armador","1.85",NA
+"57",482,"Carlos Alexandre Rodrigues do Nascimento","Ala/Pivô","2.03","106kg"
+"58",794,"Isaac Rafael Gonçalves","Ala","1.92","96kg"
+"59",1058,"Jefferson Campos","Ala/Armador",NA,"86kg"
+"60",152,"Hélio Vitor Luiz da Costa Lima","Ala/Armador","1.87","89kg"
+"61",50,"Augusto Cesar Bresolin Goes","Ala/Pivô","1.95",NA
+"62",82,"Henrique Nogueira Hernandes","Ala/Pivô","1.93",NA
+"63",307,"Ildes Henrique Dos Santos","Armador","0",NA
+"64",319,"Ricardo Laste","Armador","0",NA
+"65",858,"Atílio Leonardo Gomes de Mello","Pivô","2.06","130kg"
+"66",154,"Jefferson William Andrade da Silva Antônio","Ala/Pivô","2.07"," 104kg"
+"67",62,"Tiago Valentim de Lima","Pivô",NA,"110kg"
+"68",160,"David Da Silva Teles","Pivô","2.04",NA
+"69",309,"Fabricio Russo de Oliveira","Ala","2",NA
+"70",55,"Andre Luiz G. de Oliveira","Pivô","2.05",NA
+"71",366,"Welington Reginaldo dos Santos","Armador","1.85","75kg"
+"72",330,"Willians Lucas Ferreira Da Silva","Ala/Pivô","2.02","120kg"
+"73",191,"Rafael Paulo De Lara Araújo","Pivô","2.12",NA
+"74",117,"Renato Lamas Pinto","Ala","2.03",NA
+"75",263,"Ricardo Junqueira Giannecchini","Armador","1.81",NA
+"76",320,"Andre Luiz Marques Ferreira Dos Santos","Ala","1.98",NA
+"77",107,"Rafael Ferreira De Souza","Ala/Pivô","2.09","104kg"
+"78",32,"Adriano Jose Faggeane Galvão","Armador","1.92",NA
+"79",358,"Fransérgio Gilberto Marques","Ala","1.89",NA
+"80",203,"Wagner de Carvalho França Mattos","NOTFOUNDCONFIRMED",NA,NA
+"81",137,"Shamell Jermaine Stallworth","Ala",NA,"97kg"
+"82",280,"Andre Luis Fonseca Guimarães","Armador","0",NA
+"83",322,"Ricardo Augusto Ferreira Ignácio","Armador","0",NA
+"84",165,"Leandro Da Cruz Silva","Ala/Pivô","2.03",NA
+"85",33,"Frederico Rossi Dos Santos","Ala","1.95",NA
+"86",1007,"Vinicius de Oliveira Cornelio Pastor","Ala","2","103kg"
+"87",447,"André Stefanelli Martins","Ala","1.98","92kg"
+"88",268,"Marcellus Sarmento Câmara da Silva","Ala","1.88","96kg"
+"89",182,"Guilherme Frantz Teichmann","Ala/Pivô","2.04",NA
+"90",287,"Alfredo Luiz Perandini","Ala","1.94",NA
+"91",348,"Bruno Vieira da Cruz Langsdorff","Armador","1.88","92kg"
+"92",167,"Rodrigo César Silva","Ala/Pivô","2.05",NA
+"93",86,"Guilherme Filipin Alves Pereira","Ala",NA,"97kg"
+"94",35,"Rafael Rodrigues","Pivô",NA,NA
+"95",113,"Paulo Fernando Moreira De Castro","Pivô","2.11",NA
+"96",311,"Daniel Andreev Conti","Pivô","2.02",NA
+"97",848,"Adriano de Abreu  Machado","Pivô",NA,"104kg"
+"98",289,"Jorge Luis Amaral Seraphim","Armador","0",NA
+"99",363,"Luis Guilherme Dos Santos","Armador","1.8",NA
+"100",175,"Thiago Farias Mathias Rosa","Pivô",NA,"115kg"
+"101",102,"Leonardo Di Pacce Dos Santos","Pivô",NA,NA
+"102",768,"Tchielo Lisboa Camboim","Ala/Pivô","2",NA
+"103",270,"Rodrigo Del Arco","Armador","1.76",NA
+"104",334,"Rafael De Souza Fusco","Ala","1.92",NA
+"105",297,"Fabiano De Oliveira Souza","Ala/Pivô","0",NA
+"106",480,"Valter Apolinario Da Silva","Armador","1.85","90kg"
+"107",188,"Facundo Luis Sucatzky","Armador","1.77",NA
+"108",114,"Aristides Josuel Dos Santos","Pivô","2.05",NA
+"109",42,"Fábio Schoenberger","Ala","1.92",NA
+"110",75,"Rodrigo Pereira Santos Bispo","Pivô","2.04",NA
+"111",302,"Rafael Sabbag","Armador","0",NA
+"112",367,"Marcus Vinícius Vieira de Sousa","Ala","2.07","101kg"
+"113",315,"Eric Arthur Romualdo","Armador","1.85","80kg"
+"114",271,"Thomas Lutke Gehrke","Ala/Pivô","2.03",NA
+"115",122,"Fernando Martins Alvim","Pivô","2.02","100kg"
+"116",46,"Douglas De Paulo Viegas","Ala/Pivô","1.96",NA
+"117",81,"Anderson Eurípedes Ferreira","Ala/Pivô","2.05","105kg"
+"118",306,"Cristiano Baierle","Ala/Pivô","2.01",NA
+"119",483,"Vitor Alves Benite","Ala/Armador","1.9",NA
+"120",318,"Luis Fernando Pascotti","Pivô","0",NA
+"121",326,"Thomaz de Moura Melazzo","Ala/Pivô","2.02",NA
+"122",153,"Frederico Lima Santos","Armador","1.84",NA
+"123",57,"André Luiz Bresolin Góes","Ala","1.95","78kg"
+"124",87,"Darlan Ferreira De Oliveira","Pivô","2.07",NA
+"125",308,"Thiago Francisco Labbate","Pivô","2.08",NA
+"126",45,"Evandro Fernandes Pinto","Ala/Pivô","1.9",NA
+"127",356,"Rômulo Gabriel De Oliveira Cardoso","Ala","1.87",NA
+"128",329,"Rodrigo Stefanelli Martins","Armador","0",NA
+"129",180,"Fernando Carneiro Coloneze","Pivô","2.07",NA
+"130",70,"Jefferson de Souza Sobral","Pivô","2.03","95kg"
+"131",161,"Thiago Perez Pereira da Silva","Ala","1.93","94kg"
+"132",312,"Telmo Santos Oliveira","Armador","0",NA
+"133",95,"Ricardo Luis Probst","Pivô","2",NA
+"134",484,"Bruno Pires Fiorotto","Pivô","2.08","115kg"
+"135",349,"Charles Márcio Lopes E Silva","Ala","2.03",NA
+"136",193,"Marcelo Magalhães Machado","Ala","2","95kg"
+"137",134,"José Roberto Nardi Duarte","Ala/Armador","1.95","95kg"
+"138",266,"Erik Amadeu Duarte Jorge","Armador","0",NA
+"139",321,"Mateus Nascimento Siqueira Dos Santos","Armador","0",NA
+"140",155,"Luiz Felipe Campos Lemes","Ala/Armador","1.9",NA
+"141",31,"Arthur Luiz Belchor Silva","Ala","1.97","89kg"
+"142",40,"Audrei Parisotto","Ala","1.91","91kg"
+"143",91,"Hélio Rubens Garcia Filho","Armador","1.83",NA
+"144",446,"Rogério Klafke","Ala","2",NA
+"145",97,"Cauê Verzola de Freitas","Armador","1.92","90kg"
+"146",158,"João Gabriel Abreu Fidélis","Ala","1.88",NA
+"147",173,"Wanderson De Jesus Jovino","Pivô","2.03",NA
+"148",678,"Matheus Marin De Freitas","","0",NA
+"149",296,"Raphael De Gouveia Bernardes","Armador","0",NA
+"150",344,"Luiz Gabriel Penna","Armador","0",NA
+"151",30,"Matheus dos Prazeres Costa","Armador","1.8",NA
+"152",346,"Felipe Mello De Andrade Figueira","Armador","0",NA
+"153",85,"André De Souza Silva","Ala/Pivô","2"," 114kg"
+"154",789,"Rafael Diogo Da Silva","Armador",NA,"87kg"
+"155",96,"Cauê Borges dos Santos","Ala/Armador","1.9","91kg"
+"156",792,"Roberto Dias Ferreira","Pivô","2","107kg"
+"157",151,"Edwandesson Carvalho","Ala/Armador","1.96","93kg"
+"158",159,"William Fournou Drudi","Pivô","2.02","103kg"
+"159",174,"Alessandro Magno Rocha Dos Santos","Ala/Pivô","2.03",NA
+"160",273,"Luiz Felipe Elizeu Mendes Ribeiro","Ala/Pivô","2","98kg"
+"161",343,"Willian Dias Da Silva","Ala","2","89kg"
+"162",345,"João Victor De Freitas","Armador","0",NA
+"163",80,"José Anibal Arantes Limonta Silva","Armador","1.84",NA
+"164",347,"Marcelo Da Silva","Armador","0",NA
+"165",147,"Alexandro da Silva de Oliveira","Ala",NA,"100kg"
+"166",149,"Fernando Fischer","Ala/Armador","1.9",NA
+"167",192,"Larry James Taylor Jr","Armador",NA,"89kg"
+"168",292,"Otavio Augusto Troyano De Castro","Armador","1.88",NA
+"169",333,"Daniel França","Armador","0",NA
+"170",241,"André Luiz Brugger De Mello Rodrigues","Armador","1.93",NA
+"171",146,"Guilherme Pereira Deodato","Ala","1.92","85kg"
+"172",148,"Everton Vinicius De Moraes","Ala/Pivô","1.96",NA
+"173",265,"Marcelo Machado Pereira","Armador","0",NA
+"174",28,"Ricardo Leopoldo de Azevedo","Ala/Pivô","2.02","102kg"
+"175",299,"Daniel Nascimento Costa Souza","Pivô","2.07",NA
+"176",685,"João Paulo de Sousa Lustosa","Pivô","0",NA
+"177",145,"Renato Carbonari","Ala/Pivô","2.05","106kg"
+"178",93,"Felipe Taddei","Ala/Armador","1.9","92kg"
+"179",53,"Raul Oliveira Rodrigues","Ala/Pivô","1.93",NA
+"180",92,"Danilo Teixeira Aga","Ala/Pivô","1.89",NA
+"181",828,"Daniel Almiro Zillmer","Ala","1.98","95kg"
+"182",11259,"Rafael Leite Malfi","Armador","1.85",NA
+"183",162,"João Vicente Guerra Alves","Ala/Pivô","1.75",NA
+"184",105,"Jimmy Dreher de Oliveira","Ala",NA,"91kg"
+"185",303,"Pedro Henrique Wald","Armador","0",NA
+"186",313,"Edson Da Silva Kley","Armador","0",NA
+"187",327,"Arthur Henrique Stela Bernardi","Ala/Pivô","2.07","103kg"
+"188",176,"Lucas Santos Ferreira de Paulo","Ala/Pivô","1.98",NA
+"189",778,"Gustavo NBB 08 Saldanha","Armador","0",NA
+"190",295,"Guilherme Barros Da Luz","Armador","1.89",NA
+"191",772,"Gorauskas","Ala/Armador","0",NA
+"192",25,"Deivisson Dos Santos Costa","Pivô","2.1",NA
+"193",773,"Douglas Grokala Gorauskas","Pivô","2.05",NA
+"194",305,"Alan Silveira Foknik","Armador","0",NA
+"195",1033,"Diego Dias Silva","Pivô","2.08","118kg"
+"196",967,"Victor Daniel Chueke Pureza","Ala","1.94",NA
+"197",283,"Daniel Moraes Dos Santos Bezerra","Armador","0",NA
+"198",285,"João Victor Chaves Ramalho","Pivô","2",NA
+"199",781,"Rafael Mihossi da Silva","Armador","1.9",NA
+"200",130,"Rafael Donatti Alves Maia","Pivô","2.01",NA
+"201",284,"Alírio Alves de Souza","Pivô","2.1","112kg"
+"202",445,"Márcio da Silva Dornelles","Ala","1.96","100kg"
+"203",281,"Eneias Matos Martins","Armador","2.02",NA
+"204",301,"Alexandre Barbosa","Armador","0",NA
+"205",100,"Lucas Daniel Tischer","Pivô","2.08",NA
+"206",774,"Sylvester Morgan","Armador","0",NA
+"207",779,"Marvin Kilgore","Ala","1.91",NA
+"208",150,"Soriani","Pivô","1.86",NA
+"209",1023,"Rafael Moreira da Silva","Ala",NA,"96kg"
+"210",775,"Marcio nbb08 BIRA","Armador","0",NA
+"211",207,"Ian","Ala/Pivô","1.92",NA
+"212",521,"Leonardo Gregório Aparecido do Amaral","Ala","1.98",NA
+"213",137,"Shamell Jermaine Stallworth","Ala",NA," 97kg"
+"214",780,"Tiago Veiga Viera Souza","Armador","1.9",NA
+"215",340,"Guilherme Schrnck Gazaro","Ala","1.92",NA
+"216",298,"Carlos Henrique Rodrigues Do Nascimento","Ala/Pivô","2.11",NA
+"217",324,"Bruno Irigoyen","Ala","1.98","90kg"
+"218",159,"William Fournou Drudi","Pivô","2.02"," 103kg"
+"219",59,"Manuil Egídio Leal De Souza","NOTFOUNDCONFIRMED",NA,NA
+"220",86,"Guilherme Filipin Alves Pereira","Ala",NA," 97kg"
+"221",21,"Felipe Gustavo Da Silva","Armador","1.87",NA
+"222",11304,"Thiago César Carneiro Marcello","Ala","1.86","80kg"
+"223",310,"Gustavo Santos Pereira Lima","Armador",NA,"80kg"
+"224",776,"André Davis Carvalho","Armador","0",NA
+"225",144,"João","Armador","1.98",NA
+"226",68,"Rodrigo Alves Maistro","Ala","1.97","95kg"
+"227",99,"Luis  Fernando de Souza","Ala/Armador","2.1",NA
+"228",78,"Guilherme Giovannoni","Ala/Pivô",NA,"102kg"
+"229",51,"Eric Aparecido Soares","Ala/Pivô","2.04",NA
+"230",66,"Magen Pharez McNeil","Ala","1.98",NA
+"231",11957,"João Paulo Lopes Batista","Pivô","2.06","120kg"
+"232",139,"Delano Thomas","Ala/Armador","2.04",NA
+"233",65,"Bruno Lira Barbosa da Silva","Ala/Pivô","2.01",NA
+"234",52,"Marcos Martins da Rosa","Pivô","2.08",NA
+"235",141,"Brown","Ala/Pivô","1.99",NA
+"236",157,"Vitor Boccardo","Ala/Pivô","2",NA
+"237",108,"Wanderson Camargo Trigueiro","Ala/Pivô","2.04",NA
+"238",129,"Celinho","Ala/Pivô","1.88",NA
+"239",63,"Johnnie Nascimento Silva Reis","Pivô","1.86",NA
+"240",801,"Ralfi Silva Ansaloni","Pivô",NA,"113kg"
+"241",212,"Daniel Campos Machado da Silva","Pivô","1.92",NA
+"242",124,"Leonardo Quadrado","Armador","2",NA
+"243",112,"Paulo Henrique Rossito","","2.02",NA
+"244",11363,"Cicero da Silva Gonzaga","Ala","2.02",NA
+"245",44,"Bernardo Guimarães  Barreto","Armador","1.83",NA
+"246",948,"Caio Roberto Ranches de Souza","Ala","1.92",NA
+"247",121,"Nailson Cunha da Silva","Pivô","2.02",NA
+"248",135,"Antonie Mathew Stockman","Ala","1.81",NA
+"249",156,"André Luiz Chueri da Silva Barbosa","Ala","2.01",NA
+"250",214,"Fúlvio Chiantia de Assis","Armador",NA,"83kg"
+"251",169,"Jeffries","Pivô","2.02",NA
+"252",127,"Charles","Pivô","1.78",NA
+"253",825,"Mark Antonio Borders","Armador","1.87",NA
+"254",126,"Jose Guilherme Nascimento Haas","Ala","1.95",NA
+"255",84,"Jonh Albert Thomas","Ala/Pivô","1.96",NA
+"256",380,"Amiel Erick Vega Morejon","Ala/Pivô","2.04",NA
+"257",448,"Lucas Fernandes Mariano","Pivô","2.07","120kg"
+"258",163,"Jarjuan Stane Smith","Ala/Pivô","1.9",NA
+"259",267,"Eduardo Magalhães Machado","NOTFOUNDCONFIRMED",NA,NA
+"260",72,"Tramaine Deshaun Stevens","Pivô","1.95",NA
+"261",232,"Rodrigo de Camargo Sant´anna","NOTFOUNDCONFIRMED",NA,NA
+"262",156,"André Luiz Chueri da Silva Barbosa","NOTFOUNDCONFIRMED",NA,NA
+"263",115,"Brenno","Ala/Pivô","1.91",NA
+"264",309,"Fabricio Russo de Oliveira","Ala","2",NA
+"265",113,"Paulo Fernando Moreira De Castro","Pivô","2.11",NA
+"266",26,"Jhonatan Luz dos Santos","Ala","1.97","93kg"
+"267",190,"Chinwuba Uzoma Jeffersom Agba","Pivô","2.08",NA
+"268",71,"Harper Terry Williams","Pivô","2.02",NA
+"269",342,"Joel Gabriel Muñoz Castillo","Armador","1.75",NA
+"270",29,"Thyago Taroni Aleo","Armador","1.83",NA
+"271",56,"Jamison Rudy Van Brewer","Armador","1.94",NA
+"272",64,"James Clarence Parker","Ala/Armador","1.85",NA
+"273",122,"Fernando Martins Alvim","Pivô","2.02"," 100kg"
+"274",848,"Adriano de Abreu  Machado","Pivô",NA," 104kg"
+"275",78,"Guilherme Giovannoni","Ala/Pivô",NA," 102kg"
+"276",366,"Welington Reginaldo dos Santos","Armador","1.85"," 75kg"
+"277",68,"Rodrigo Alves Maistro","Ala","1.97"," 95kg"
+"278",57,"André Luiz Bresolin Góes","Ala","1.95"," 78kg"
+"279",43,"Shilton Alessanco dos Santos","Pivô","1.98"," 112kg"
+"280",40,"Audrei Parisotto","Ala","1.91"," 91kg"
+"281",31,"Arthur Luiz Belchor Silva","Ala","1.97"," 89kg"
+"282",480,"Valter Apolinario Da Silva","Armador","1.85"," 90kg"
+"283",70,"Jefferson de Souza Sobral","Pivô","2.03"," 95kg"
+"284",62,"Tiago Valentim de Lima","Pivô",NA," 110kg"
+"285",23,"Arlindo Gomes Baltazar Neto","Ala/Armador",NA," 76kg"
+"286",178,"Marcos Vinícius Inácio","Pivô","2.05"," 120kg"
+"287",275,"Arnaldo De Souza Moreira Filho","Ala/Armador",NA," 87kg"
+"288",216,"Renan Santos Lenz","Pivô",NA," 102kg"
+"289",138,"Luis Fernando da Silva","Ala/Armador","1.83"," 84kg"
+"290",26,"Jhonatan Luz dos Santos","Ala","1.97"," 93kg"
+"291",214,"Fúlvio Chiantia de Assis","Armador",NA," 83kg"
+"292",267,"Eduardo Magalhães Machado","Ala/Armador",NA," 90kg"
+"293",1007,"Vinicius de Oliveira Cornelio Pastor","Ala","2"," 103kg"
+"294",192,"Larry James Taylor Jr","Armador",NA," 89kg"
+"295",215,"Leonard Raye Mosley","Ala","1.95",NA
+"296",105,"Jimmy Dreher de Oliveira","Ala",NA," 91kg"
+"297",147,"Alexandro da Silva de Oliveira","Ala",NA," 100kg"
+"298",284,"Alírio Alves de Souza","Pivô","2.1"," 112kg"
+"299",789,"Rafael Diogo Da Silva","Armador",NA," 87kg"
+"300",11304,"Thiago César Carneiro Marcello","Ala","1.86"," 80kg"
+"301",151,"Edwandesson Carvalho","Ala/Armador","1.96"," 93kg"
+"302",828,"Daniel Almiro Zillmer","Ala","1.98"," 95kg"
+"303",175,"Thiago Farias Mathias Rosa","Pivô",NA," 115kg"
+"304",187,"Murilo Becker da Rosa","Pivô","2.08"," 115kg"
+"305",48,"Eduardo Citrangolo Barbosa","Armador","1.89",NA
+"306",107,"Rafael Ferreira De Souza","Ala/Pivô","2.09"," 104kg"
+"307",152,"Hélio Vitor Luiz da Costa Lima","Ala/Armador","1.87"," 89kg"
+"308",166,"Vinícius Villela Gobor","Armador",NA," 90kg"
+"309",577,"Vitor Machado Pinto e Silva","Ala/Pivô","0",NA
+"310",146,"Guilherme Pereira Deodato","Ala","1.92"," 85kg"
+"311",801,"Ralfi Silva Ansaloni","Pivô",NA," 113kg"
+"312",97,"Cauê Verzola de Freitas","Armador","1.92"," 90kg"
+"313",482,"Carlos Alexandre Rodrigues do Nascimento","Ala/Pivô","2.03"," 106kg"
+"314",792,"Roberto Dias Ferreira","Pivô","2"," 107kg"
+"315",28,"Ricardo Leopoldo de Azevedo","Ala/Pivô","2.02"," 102kg"
+"316",445,"Márcio da Silva Dornelles","Ala","1.96"," 100kg"
+"317",1058,"Jefferson Campos","Ala/Armador",NA," 86kg"
+"318",161,"Thiago Perez Pereira da Silva","Ala","1.93"," 94kg"
+"319",193,"Marcelo Magalhães Machado","Ala","2"," 95kg"
+"320",168,"Guilherme Santos Hubner","Ala/Pivô","2.1"," 115kg"
+"321",481,"Alex Ribeiro Garcia","Ala","1.9"," 100kg"
+"322",119,"Cesar Luiz Fabretti Araujo","Ala/Pivô","2.02"," 109kg"
+"323",38,"Cláudio Antônio Gomes Clemente","Pivô","2.02",NA
+"324",58,"Alexandre Henrique Santos Pinheiro","Armador","1.85"," 89kg"
+"325",209,"Marcio Borges","Ala/Armador","0",NA
+"326",96,"Cauê Borges dos Santos","Ala/Armador","1.9"," 91kg"
+"327",54,"Vinicius Bristott","Ala/Pivô","1.92",NA
+"328",145,"Renato Carbonari","Ala/Pivô","2.05"," 106kg"
+"329",1033,"Diego Dias Silva","Pivô","2.08"," 118kg"
+"330",351,"André Luiz Quirino Pereira","Pivô","2.05"," 105kg"
+"331",273,"Luiz Felipe Elizeu Mendes Ribeiro","Ala/Pivô","2"," 98kg"
+"332",134,"José Roberto Nardi Duarte","Ala/Armador","1.95"," 95kg"
+"333",210,"Paulo Heitor Boracini","Ala/Armador",NA," 83kg"
+"334",852,"Sanlley Borges de Freitas","Ala","1.9",NA
+"335",437,"Ronald Rudson Rodrigues dos Reis","Pivô","2.07",NA
+"336",788,"Diego Dos Santos Boa","Pivô","1.78",NA
+"337",93,"Felipe Taddei","Ala/Armador","1.9"," 92kg"
+"338",197,"Eric","Armador","0",NA
+"339",310,"Gustavo Santos Pereira Lima","Armador",NA," 80kg"
+"340",741,"Pablo Joabson Freire Gomes","Pivô","2",NA
+"341",128,"Lucas Tobias dos Santos","Pivô","1.97",NA
+"342",448,"Lucas Fernandes Mariano","Pivô","2.07"," 120kg"
+"343",89,"Junior","Pivô","2.07",NA
+"344",49,"Julian","Ala/Pivô","1.91",NA
+"345",90,"Murilo Ivan Lobo Iwama","Armador","1.83",NA
+"346",140,"Eduardo Mariano de Oliveira","Ala","1.93"," 95kg"
+"347",164,"Cristiano Silva Felício","Pivô","2.08",NA
+"348",396,"Fábio Santos de Oliveira","Ala","1.95",NA
+"349",348,"Bruno Vieira da Cruz Langsdorff","Armador","1.88"," 92kg"
+"350",367,"Marcus Vinícius Vieira de Sousa","Ala","2.07"," 101kg"
+"351",379,"João Pedro Boni Sa","Ala/Pivô","1.92",NA
+"352",360,"Pedro Cesar Teruel Lima","NOTFOUND",NA,NA
+"353",839,"Jordan Burger","Ala/Pivô","2.03"," 98kg"
+"354",383,"Maicon Bento Do Nascimento","Ala/Armador","2.13",NA
+"355",369,"Erick Rodrigues Camilo","Pivô",NA," 119kg"
+"356",377,"Arquilaly Souza dos Santos","Ala/Pivô","1.97",NA
+"357",423,"Juan Pablo Figueroa","Armador","1.82",NA
+"358",370,"Arthur José da Luz Casimiro","Pivô",NA," 120kg"
+"359",484,"Bruno Pires Fiorotto","Pivô","2.08"," 115kg"
+"360",740,"Fernando Rocha Sousa","Ala/Pivô","0",NA
+"361",368,"Eduardo Farhat Caviglia","Ala","1.94",NA
+"362",324,"Bruno Irigoyen","Ala","1.98"," 90kg"
+"363",393,"Michel Ferreira do Nascimento","Armador","0",NA
+"364",412,"Matheus Dalla Barba","Ala","1.97",NA
+"365",341,"Guilherme Schneider","Ala",NA," 85kg"
+"366",424,"Robby Stephen Collum","Ala/Armador","1.83",NA
+"367",425,"Robert Andrew Day","Ala","1.97",NA
+"368",441,"Deryk Evandro Ramos","Armador",NA," 84kg"
+"369",386,"Hátila de Souza Passos","Pivô","2.06",NA
+"370",315,"Eric Arthur Romualdo","Armador","1.85"," 80kg"
+"371",404,"Daniel Machado de Barros Castellar","Pivô","2.02"," 116kg"
+"372",394,"Luis Felipe Gruber","Ala/Pivô",NA," 105kg"
+"373",416,"Dusan Radivojevic","Ala","1.97",NA
+"374",418,"Robert Earl Owens II","Ala","2.01",NA
+"375",417,"Maurice Levell Riddick","Ala","1.9",NA
+"376",419,"Raphael Mancel da Silva","Ala/Pivô","0",NA
+"377",390,"Luciano Ferreira de Souza Junior","Ala/Pivô","2",NA
+"378",389,"Renato Scholz da Silva","Ala/Pivô","2.03"," 89kg"
+"379",420,"Henrique Macia Alves da Cruz","Ala/Pivô",NA," 98kg"
+"380",357,"Luciano Silva Jardim Starling","Armador","1.85",NA
+"381",392,"Durelle Lamonte Brown","Ala/Pivô","2.05",NA
+"382",365,"Ronald Ricardo Ramon Guerrero","NOTFOUND",NA,NA
+"383",427,"Lucas Cipolini Alves","Pivô","2.03"," 105kg"
+"384",355,"Daniel Maurice Spillers","Ala/Pivô","2",NA
+"385",447,"André Stefanelli Martins","Ala","1.98"," 92kg"
+"386",400,"Gutemberg Pereira de Souza","Ala","1.9"," 90kg"
+"387",399,"Átila Sacramento dos Santos","NOTFOUND",NA,NA
+"388",428,"Frederico Duarte Brito dos Santos","Ala/Pivô","1.98",NA
+"389",395,"Douglas Ângelo Nunes","NOTFOUND",NA,NA
+"390",1300,"Felipe Rech","Pivô","2.1"," 110kg"
+"391",475,"Bernard Gregory Robinson Jr","Ala","1.98",NA
+"392",431,"Ricardo Taboas de Bem","Pivô","2.1",NA
+"393",432,"Gustavo Henrique de Araujo Gomes","Pivô","0",NA
+"394",476,"Pedro Ignacio Calderon","Pivô","2.09",NA
+"395",398,"Bruno Costa Savignani","Armador","1.84",NA
+"396",133,"Chandler Yury Chaves","Ala","1.96",NA
+"397",397,"Carlos Fernando Silva Macedo","Ala/Pivô","0",NA
+"398",627,"José Victor Ferreira Jerônimo","Pivô","2.08"," 120kg"
+"399",436,"Brett Larry Winkelman","Ala/Pivô","1.98",NA
+"400",433,"Elio Corazza Neto","Armador",NA," 88kg"
+"401",566,"Murilo Noceti Veloso","Ala",NA,NA
+"402",440,"David Boyd Teague III","Ala/Pivô","0",NA
+"403",477,"Marques Demtruis Lewis","Ala/Armador","0",NA
+"404",444,"Alex Donizete Passilongo","Pivô","2.12",NA
+"405",803,"Rafael Fernandes Castellon","Ala","1.92"," 93kg"
+"406",434,"Lucas Pinheiro Taets","Armador","1.83",NA
+"407",791,"Pedro Pucci de Melo Rodrigues","Ala","1.9",NA
+"408",451,"Lucas Miguel Avelino","Armador","1.9",NA
+"409",422,"Marcelo Deschamps R. Ruediger","Armador","0",NA
+"410",430,"Pedro Henrique de Souza Carvalho","Pivô","2",NA
+"411",478,"Ricardo Fischer","Armador","1.85"," 84kg"
+"412",381,"Davi Rossetto de Oliveira","Armador","1.81"," 78kg"
+"413",485,"Gege","Ala/Pivô","1",NA
+"414",402,"Max Gerhard Vater Neto","Armador","0",NA
+"415",11387,"Patrick Luiz de Ana Vieira","Armador","1.86"," 80kg"
+"416",384,"Leandro Cruvinel Miranda","Pivô","2.05",NA
+"417",610,"Luan Pereira Xavier","Ala","1.87",NA
+"418",426,"Evander Cesar Pereira","Ala/Pivô","2",NA
+"419",388,"William Glaser Buttendorf","Ala/Pivô","0",NA
+"420",81,"Anderson Eurípedes Ferreira","Ala/Pivô","2.05"," 105kg"
+"421",438,"Rafael Correia Moreira","Ala/Pivô","0",NA
+"422",567,"Pedro Henrique Cavalin de Macedo","Ala","2.03"," 94kg"
+"423",784,"Ricardo Augusto Lento Coelho dos Santos","Ala/Armador","1.87"," 83kg"
+"424",787,"Marcos Sather Garcia Hubner","Pivô","2.05",NA
+"425",268,"Marcellus Sarmento Câmara da Silva","Ala","1.88"," 96kg"
+"426",530,"George Frederico Torres Homem Chaia","Armador","1.82"," 80kg"
+"427",783,"Ulisses Ferreira de Lima","Ala","1.99"," 90kg"
+"428",786,"Diego Santana Conceição","Ala/Pivô","1.98"," 95kg"
+"429",596,"Leandro Mateus Barbosa","Ala/Armador","1.92",NA
+"430",598,"Caio Aparecido da Silveira Torres","Pivô",NA," 135kg"
+"431",595,"David Waynne Jackson Jr","NOTFOUND",NA,NA
+"432",892,"Guillermo Federico Kammerichs","Ala/Pivô","2.03",NA
+"433",11299,"André Mellim Seixas Silva","Armador","1.75",NA
+"434",817,"Felipe Barros Dias","Armador","1.86",NA
+"435",711,"Henrique Coelho","Armador","1.87"," 90kg"
+"436",715,"Olintho Pereira Abrão Silva","Ala","2.01",NA
+"437",782,"Leonardo K. Waszkiewicz","Pivô",NA," 109kg"
+"438",612,"Durval Alves Prado Cunha","Ala","2.01"," 100kg"
+"439",11201,"Romario Gabriel Santos Veber","Armador","1.85"," 84kg"
+"440",796,"Andre Bennett Laws","Ala/Armador","1.86",NA
+"441",735,"Pedro Henrique Soares da Silva","Ala","2",NA
+"442",799,"Ibrahim Olakunle Badmus","Armador","1.85",NA
+"443",835,"Fabiano Koiti Costa Fujimori","Pivô","1.82",NA
+"444",793,"Jon Keaton Rogers","Pivô","0",NA
+"445",634,"Luiz Henrique Silva Vieira","Ala/Armador","1.87",NA
+"446",763,"Luciano Agustin Gonzalez","Ala","1.85",NA
+"447",800,"Jeffrey Kyle Ledbetter","Ala/Armador","1.92",NA
+"448",555,"Leonardo Simões Meindl","Ala","2"," 99kg"
+"449",785,"Assis Santos Cardoso","Ala/Pivô","1.96",NA
+"450",794,"Isaac Rafael Gonçalves","Ala","1.92"," 96kg"
+"451",601,"Raphael Rodrigues De Oliveira","Armador","1.82",NA
+"452",698,"Diego Gomes","Ala/Armador","1.85",NA
+"453",797,"Kenny Montrell Dawkins","Armador","1.8"," 70kg"
+"454",11393,"Gustavo Estevão de Oliveira Lima","Armador","1.88",NA
+"455",629,"Maxwell Dias Ribeiro","Ala/Pivô","1.97"," 84kg"
+"456",804,"Nathan Wilbarte Thomas","Ala","2",NA
+"457",813,"Edward Richard Basden","Ala/Armador","1.96",NA
+"458",810,"Jeffrey Afriyie Kame Addai","Armador","1.94",NA
+"459",812,"Jermaine Lafrance Johnson","Ala/Pivô","2.03",NA
+"460",814,"Kevin Edward Sowell","Ala/Armador","1.9",NA
+"461",611,"Jarvis de Oliveira e Silva","Ala","1.94",NA
+"462",824,"Alvaro Calvo Masa","Ala","2.02",NA
+"463",646,"Eduardo Campos Sommer","Ala/Pivô","2.04"," 107kg"
+"464",845,"Alexandre Paranhos de Souza","Pivô",NA," 100kg"
+"465",836,"Eduardo Simões Meindl","Pivô","1.91",NA
+"466",805,"Rafael Estevão de Oliveira Lima","Armador","1.85",NA
+"467",539,"Márcio de Mattos Junior","Ala/Armador","1.88"," 87kg"
+"468",841,"Tobias Marramarco Lovato","Ala",NA,NA
+"469",826,"Guillermo Alejandro Araujo Cappello","Pivô","2.04",NA
+"470",853,"Thad Kojo Mensah","Armador","1.85",NA
+"471",844,"Felipe Ranieri Romão Santana","Armador","1.9",NA
+"472",816,"Luiz Otavio Guimarães Schwartzman","Ala/Pivô","2.01",NA
+"473",857,"Rashad Jamal Bishop","Ala/Pivô","1.96",NA
+"474",827,"Alex da Silva Marques","Ala","1.98",NA
+"475",518,"Bruno Henrique Dias","Pivô","2.02",NA
+"476",858,"Atílio Leonardo Gomes de Mello","Pivô","2.06"," 130kg"
+"477",620,"Ricardo Bampa Padilha","Ala/Pivô","1.97",NA
+"478",11297,"Leonardo Huguenin de Medeiros","Ala","1.92",NA
+"479",1161,"Gedson Thawan Gaspar Gonçalves","Pivô","2.02"," 107kg"
+"480",820,"Moisés Barbosa de Lima Silva","Pivô","2.13"," 110kg"
+"481",859,"Steven Anthony Toyloy","Pivô",NA," 112kg"
+"482",758,"Wilson Carneiro de Lima Júnior","Armador",NA," 70kg"
+"483",829,"Ismar do Vale Neto","Ala/Armador","1.88",NA
+"484",11467,"Heitor Fabio Cardoso","Armador","1.88",NA
+"485",864,"Jeffery Trepagnier","Ala/Pivô","1.94",NA
+"486",823,"Leonardo Demétrio","Ala/Pivô","2.08",NA
+"487",860,"Vuk Ivanovic","Pivô","2.08",NA
+"488",862,"Christopher Xavier Hayes","Ala/Pivô","2.03"," 91kg"
+"489",277,"Rafael Carlos Stabile Silva","Ala","1.95"," 100kg"
+"490",575,"Lucas Dias Silva","Ala","2.07"," 93kg"
+"491",869,"Leandro","Ala","0",NA
+"492",523,"Paulo Felipe dos Santos Teixeira","Pivô","2.06",NA
+"493",651,"Weliton Cardoso Bianchi","","1.96",NA
+"494",861,"Fernando Santos de Jesus","Pivô","2.05",NA
+"495",600,"Feliciano Perez Neto","Pivô",NA," 112kg"
+"496",660,"Breno Araújo Sena Santos","Ala","1.94",NA
+"497",807,"Felipe Carvalho de Souza","Ala/Armador","1.83",NA
+"498",11296,"Daniel Pereira Lorio","Armador",NA," 80kg"
+"499",1036,"Wesley Henrique Gonçalves Andrade","Ala/Pivô","1.95"," 102kg"
+"500",1038,"Renan Michel Leichtweis","Pivô",NA,NA
+"501",1075,"David Augusto Santos Brito","Ala/Armador",NA,NA
+"502",1001,"Jermaine Darnell Beal","Ala/Armador","1.93",NA
+"503",1039,"Felippe Augusto Simões da Silva Carvalho","Ala/Pivô","2.02",NA
+"504",1003,"Anthony B. Walton","NOTFOUND",NA,NA
+"505",982,"Douglas Tuchtenhagen Kurtz","Pivô","2.13"," 110kg"
+"506",558,"Antonio Elpidio Ferreira Junior","Ala/Pivô","2"," 88kg"
+"507",979,"Jefferson Froelich Socas","Ala/Armador","1.95"," 88kg"
+"508",981,"Ricardo Morandi Zanini","Ala","1.98",NA
+"509",984,"Romário Junio de Oliveira Souza","NOTFOUND",NA,NA
+"510",1124,"Marcos da Silva","Ala","1.97",NA
+"511",1009,"Fred Peete","NOTFOUND",NA,NA
+"512",562,"Radames Diorgio da Silva Santos","Pivô","2.03",NA
+"513",986,"Vinícius Rodrigo Pinto Teló","Ala",NA,NA
+"514",1011,"Caleb Franklin Brown","Armador","1.85",NA
+"515",1021,"Joseph Troy Smith","Ala/Armador","1.93",NA
+"516",1048,"Brandon Kierre McGee","Ala","2.03",NA
+"517",1028,"Lucas Cunha Miranda","Armador","1.8",NA
+"518",987,"Abner Davi de Novais Moreira","Pivô",NA," 103kg"
+"519",955,"Fábio Luiz Pires","Pivô","2",NA
+"520",645,"Kesley De Souza Araújo","Pivô","2",NA
+"521",958,"Pedro Luiz Patekoski Moraes","Ala","1.98",NA
+"522",1013,"Arthur Pecos Fernandes da Silva","Armador","1.84"," 80kg"
+"523",1051,"Ryan Cornell Bacon ","Pivô","2",NA
+"524",1014,"Gustavo Lino","Pivô","2.14",NA
+"525",996,"Lucas Henrique Moreira","Armador","1.81"," 78kg"
+"526",1005,"Ricardo Andreotti Bodra","Ala/Pivô","2.02",NA
+"527",11112,"Victor de Souza Correia","Ala/Armador","1.8",NA
+"528",1022,"Gabriel Lourenço Tenório","Armador","1.92",NA
+"529",748,"Vinicius Reis Lima","Ala/Pivô","1.95",NA
+"530",1023,"Rafael Moreira da Silva","Ala",NA," 96kg"
+"531",583,"Bruno Felipe Viana dos Santos","NOTFOUND",NA,NA
+"532",533,"Adyb Natan Milhomem Fernandes","Pivô","2.03"," 100kg"
+"533",1008,"Rodrigo Alves de Souza","Pivô","2",NA
+"534",1026,"Igor Guimarães Tracci","Ala/Pivô","2.05",NA
+"535",1004,"Cristian Gabriel Cortés","Armador","1.82",NA
+"536",1010,"Gustavo Scaglia de Paula","Ala",NA," 90kg"
+"537",1047,"Desmond Holloway","Ala",NA," 85kg"
+"538",1029,"Rafael Quintiliano dos Santos","Ala","1.94",NA
+"539",1049,"Luciano de Abreu Machado","Pivô","1.98",NA
+"540",665,"João Felipe Baiocchi Vianna","Ala","1.92",NA
+"541",1012,"Caio Ferreira","Armador","1.92",NA
+"542",973,"Deandre Coleman","Pivô","2",NA
+"543",1015,"Felipe Meirelles","Ala/Pivô","1.97",NA
+"544",1024,"André Romanato Pizzolato","Ala","2",NA
+"545",1025,"André Renato Candido","Armador","1.79",NA
+"546",954,"Éder Borges de Araújo","NOTFOUND",NA,NA
+"547",1041,"Benzor Simmons","Ala","1.96",NA
+"548",975,"Rômulo Vieira de Oliveira Junior","Pivô","2"," 110kg"
+"549",11181,"Gustavo Marques Silveira","Ala","1.95",NA
+"550",1045,"Guilherme Gouveia Hollunder","Pivô","2.03",NA
+"551",1040,"Allens Jemmott Duquese","Ala/Armador","1.94",NA
+"552",537,"Diego Marques Resende","Ala","1.91",NA
+"553",1042,"Vitor Christ de Miranda","Armador","1.75",NA
+"554",971,"Rafael Silva Gomes","Armador","1.95",NA
+"555",978,"Douglas Corrêa dos Santos ","Pivô",NA,NA
+"556",1037,"Lamar Demond Roberson","Ala","2.02",NA
+"557",953,"Lucas Henrique Martins dos Santos","Pivô","2.03",NA
+"558",1052,"Sidnei de Santana Lima","Pivô","2.15",NA
+"559",1056,"Milton Lane Garner","Ala/Armador","1.88",NA
+"560",995,"Omar Andrew Carter","Ala","1.95",NA
+"561",1018,"Pedro Henrique Wellausen Rava","Armador","1.83"," 84kg"
+"562",1044,"Wellington da Cruz Alvarenga","Pivô","2.05",NA
+"563",1002,"Danilo Fuzaro Siqueira","Ala/Armador","1.95"," 90kg"
+"564",1006,"Gemerson da Silva Barbosa","Ala/Pivô",NA," 110kg"
+"565",976,"Radovan Dragovic","Pivô","2.03",NA
+"566",1191,"Leandro Ferreira Cabral","Pivô","2.07",NA
+"567",1190,"Daniel Pinho Severo","Ala/Pivô",NA,NA
+"568",1017,"Antwaine Wiggins","Ala","2.05",NA
+"569",536,"Luis Otavio da Silva Vieira","Ala","1.99",NA
+"570",818,"Humberto Luiz Gomes da Silva ","Ala/Armador","1.95"," 93kg"
+"571",1050,"Vitor Pantoja de Britto","Armador","1.8",NA
+"572",980,"Luis Felipe Ricci Maia","Armador","1.78",NA
+"573",1072,"Felipe Lima Silva","Ala","1.88",NA
+"574",1016,"Tyrone Denell Curnell","Ala/Pivô",NA,NA
+"575",1035,"Higor Simas Pereira Lima","Ala","1.96",NA
+"576",1063,"Jason David Detrick ","Ala","1.97",NA
+"577",1027,"Cleiton Luiz Sebastião","Pivô","2.11",NA
+"578",1060,"Mateus Poltronieri Pereira","Ala","1.93",NA
+"579",652,"Fernando Rodrigues Ferreira da Silva","Pivô","2",NA
+"580",1061,"Wesley Alexandre Sena da Silva ","Pivô","2.11"," 118kg"
+"581",1062,"Nilson Goulart Santana ","Pivô","2.05",NA
+"582",1225,"Everson Aparecido Rodrigues","Ala/Pivô",NA,NA
+"583",998,"Matheus Henrique Pereira","Ala/Pivô","2.02"," 100kg"
+"584",408,"Roberto Francisco Alves Mafra","Pivô","1.92",NA
+"585",1223,"Henrique Bramorski Medeiros","Armador","1.8"," 82kg"
+"586",1140,"Guilherme Augusto Arantes Francisco","Ala","1.93",NA
+"587",990,"Gabriel Henrique Meneghetti Jambas","Pivô","1.91",NA
+"588",994,"Luan Quadro Jacon Ziani","Armador","1.81",NA
+"589",1226,"Paulo Sérgio Prestes","Pivô","2.08"," 128kg"
+"590",972,"Lucas Marciel Rosa de Faria ","Ala/Armador","1.86",NA
+"591",1229,"Everson Alexandre Resende Lacerda","Pivô","2.1",NA
+"592",1227,"Rashaun Durrel Mc Lemore","Ala/Armador",NA," 88kg"
+"593",1230,"Bruno Zanotti Cavazzoni Barrail","Ala","1.98",NA
+"594",1232,"Paul James Crosby","Ala/Pivô","2.01",NA
+"595",974,"Luis Enrique de Moraes Porto","Ala/Pivô",NA,NA
+"596",977,"Thasso Herbert Felix da Fonseca","Armador","1.72"," 70kg"
+"597",1235,"Leonardo Joanes Eltink","Ala",NA," 101kg"
+"598",1228,"Arthur Meireles Vieira de Souza","Pivô","2.04",NA
+"599",1325,"Victor Chastinet Aragão de Gusmão","Armador","1.87"," 84kg"
+"600",1054,"Lucas Teodoro de Souza Colimerio","Ala/Pivô","2.07",NA
+"601",1053,"João Pedro Borrego Siqueira Martins","Armador","1.8",NA
+"602",1224,"João Pedro de Moraes Demétrio","Ala/Pivô","2.08"," 95kg"
+"603",11279,"Nicolás Laprovittola","Armador","1.86",NA
+"604",11284,"Marcus Goree","Pivô","2.05",NA
+"605",11282,"Martín Osimani","Armador","1.94",NA
+"606",11298,"Alef César Augusto Alves Pereira","Armador","1.87"," 86kg"
+"607",11280,"Fernando Henrique Stafleu Andrade","Pivô","2.05",NA
+"608",11262,"Bruno Correa Fernandes Cabloco","Ala","2.02",NA
+"609",11338,"Victor Demétrio","Pivô","2.02",NA
+"610",675,"Ricardo Citrangulo Barbosa","Armador","1.87",NA
+"611",11322,"Wesley de Castro Ferreira","Pivô","2"," 95kg"
+"612",11517,"Gustavo Cecatto Ruiz","Armador",NA," 100kg"
+"613",11337,"Rodrigo Alves Nascimento","Ala","1.9",NA
+"614",1266,"Pablo Anibal Espinoza","Ala","2",NA
+"615",11311,"Thiago Teixeira Basílio","Armador","1.75",NA
+"616",11242,"Jamaal Thaddius Smith","Armador",NA," 87kg"
+"617",11303,"Hermerson Gustavo Da Silva Figueiredo","Ala/Pivô","2.04",NA
+"618",1263,"João Phylippe Belmiro Bernardi","Ala/Pivô",NA," 103kg"
+"619",11245,"André Luiz Coimbra Reis Souza Costa","Pivô","2.07"," 100kg"
+"620",1254,"Juan Manuel Torres","Pivô","2.1",NA
+"621",1260,"Leonardo dos S. Crucillo","Ala","1.88",NA
+"622",1259,"William Lucas Evangelista","Ala/Armador","1.85",NA
+"623",11243,"Emilio Taboada","Ala/Armador","1.93",NA
+"624",11291,"Josimar Abdiel Ayarza Tous","Ala","2.03",NA
+"625",11332,"Ted Marcos Bento Simões","Ala","1.9"," 100kg"
+"626",11113,"Gustavo Rabelo Côrtes","NOTFOUND",NA,NA
+"627",594,"Carlos Eduardo Gonçalves Rosa","Ala","1.83",NA
+"628",11306,"Luiz Paulo Cecílio dos Santos","Pivô",NA," 110kg"
+"629",11116,"Nicolas Antunes de Souza","Ala","1.91",NA
+"630",11307,"Elivelton dos Santos Soares","Pivô","1.82"," 80kg"
+"631",11315,"Vithor Eli Lersch da Silva","Armador",NA," 78kg"
+"632",11118,"Eduardo Henrique Urbano De Poli","Pivô","2.02",NA
+"633",11331,"Rafael Augusto Soleira","Ala","2",NA
+"634",11326,"Rodrigo Maiorino Degiovani","Ala","1.9",NA
+"635",11317,"Lucas Farina de Lima","Armador","1.85"," 78kg"
+"636",11316,"Marcus Vinicius Urban Toledo Medina","Ala/Pivô",NA," 103kg"
+"637",11327,"Marciel Da Silva Santos","Ala/Pivô","2",NA
+"638",11328,"Luiz Gustavo Basilio Timotheo De Oliveira","Ala",NA," 100kg"
+"639",11329,"Edward Richard Nelson","Pivô","2.02",NA
+"640",11289,"Raphael Sousa","Armador","1.9",NA
+"641",11339,"Gabriel Henrique Manjialardo de Oliveira","Ala","2.02"," 96kg"
+"642",11119,"Lucas Henrique Garcia ","Ala","1.96",NA
+"643",11330,"Junio Duval dos Santos","Ala","1.96"," 100kg"
+"644",11301,"Maique Tavares de Oliveira","Pivô","2.11"," 115kg"
+"645",11140,"Eduardo Oliveira Marques","Ala/Armador","1.82",NA
+"646",11333,"Robert Brandon Brown","Armador","1.8",NA
+"647",11334,"Nicolas Keyon Williams","Ala/Armador","1.94",NA
+"648",11335,"Devon Michael Hardin","Pivô","2.1",NA
+"649",572,"Lucas Lopes Duso","Armador","1.78",NA
+"650",11261,"Jonathan Peter Guimarães Tavernari","Ala","1.98",NA
+"651",11320,"Wesley Alves da Silva","Ala/Armador","1.96"," 90kg"
+"652",11281,"Jerome Dieu Donne Meyinsse","Pivô","2.07",NA
+"653",11290,"Fabian Ramirez Barrios","Ala/Pivô","1.95",NA
+"654",11319,"Pedro Henrique Santos de Sousa","Pivô","2.05"," 128kg"
+"655",11343,"Matheus Luxinger Gomes","Ala","1.96",NA
+"656",11294,"Rafael Mauro Grandella","Ala","1.95",NA
+"657",11342,"Curry Jermane Collins","Armador","1.89",NA
+"658",11345,"Tony Fitzgerald White Jr.","Armador","1.8",NA
+"659",626,"Raphael Gomes Figueiredo","Ala","1.95"," 87kg"
+"660",821,"Vitor Michels Salvador","Ala/Pivô","1.98",NA
+"661",11346,"Emmanuel Amauris Quezada","Ala/Armador","1.88",NA
+"662",11318,"Igor Dal Col Tormar","Ala","1.97",NA
+"663",11305,"Reinaldo de Paula Moreni Junior","Ala","1.97",NA
+"664",11344,"Ned Cox IV","Ala/Armador","1.8",NA
+"665",11308,"Nafis Graddie Ricks","Armador","1.88",NA
+"666",11321,"Lucas Moraes dos Santos","Pivô",NA,NA
+"667",11347,"Afam James Muojeke","Ala","2.07",NA
+"668",11351,"Gregory Ogden Smith II","Ala/Pivô","1.98",NA
+"669",1262,"Pablo Tavares Sueiro Vilela","Ala/Pivô",NA,NA
+"670",11312,"Adriano Alves Júnior","Pivô","2.08"," 125kg"
+"671",11350,"Vitor Egon Mijas","Ala","1.9",NA
+"672",11352,"Pedro","Armador","1.77",NA
+"673",11287,"Sualisson Tavares Da Silva ","Ala","2"," 81kg"
+"674",11348,"Murilo Henriquy Cunha da Silva","Armador","1.77"," 68kg"
+"675",11353,"Brian Henry Laing","Ala","1.95",NA
+"676",11356,"Jason Anthony Smith","Armador","1.88",NA
+"677",11349,"Carlos Eduardo Soledade da Costa","Ala/Pivô","1.93",NA
+"678",11357,"Rashad Dion McCants","Ala","1.93",NA
+"679",11691,"Guilherme Thailan Lessa","Ala/Armador",NA," 76kg"
+"680",11359,"Otis Michael George","Pivô","2.04",NA
+"681",1264,"Lucas de Oliveira Rodrigues","Pivô","2.03",NA
+"682",11358,"Dartona Lavelle Washam Jr","Ala/Pivô","2.01",NA
+"683",11371,"Leandro da Cruz Silva de Azevedo","Ala/Pivô","2.03"," 101kg"
+"684",11362,"Felipe André Vezaro","Ala","1.92"," 87kg"
+"685",11364,"Maximiliano Ariel Stanic","Armador","1.78",NA
+"686",11323,"George Lucas Alves de Paula","Armador","1.96"," 91kg"
+"687",11288,"Victor Matheus Leal Velozo","Pivô",NA," 98kg"
+"688",1233,"André Tadeu de Oliveira Ferros","Ala/Pivô","1.98",NA
+"689",1234,"Thomas Antonio Poles","Armador","1.88",NA
+"690",11660,"Walter Herrmann Heinrich","Ala/Pivô","2.06",NA
+"691",11658,"Marcos Daniel Mata","Ala","2.01",NA
+"692",11684,"Gabriel Alves Renato","Armador","1.75",NA
+"693",11314,"Everton Gomes Da Silva Oliveira","Pivô","2.07"," 108kg"
+"694",11657,"Rafael Hettsheimeir ","Pivô",NA," 118kg"
+"695",11557,"Darington ONeal Hobson","Ala","2.01",NA
+"696",11659,"Carlos de Cobos Ortega","Armador","1.91",NA
+"697",11669,"Vinicius da Costa Sabino Pessoa","Ala/Pivô","2.04",NA
+"698",11663,"Gerson do Espírito Santo Júnior","Pivô",NA," 103kg"
+"699",11430,"Pedro Mendonça Ferreira da Silva","Armador",NA," 93kg"
+"700",11667,"Jimmy Devon Baxter","Ala","1.98",NA
+"701",11675,"Christian Mendonça Panunzio","Ala/Armador","1.9"," 91kg"
+"702",11664,"André Fonseca Marone","Ala/Armador","1.93",NA
+"703",11693,"Ian Curtis Young","Ala","1.9",NA
+"704",11380,"Vinicius Dione dos Santos Sossai","Ala/Pivô","1.94",NA
+"705",11666,"Carlos Nicolás Gianella","Ala/Armador","1.85",NA
+"706",11381,"Guilherme Fermino","Ala","1.8",NA
+"707",11392,"Rinaldo José Alves Mafra","Pivô","2.01",NA
+"708",11661,"Tarvin Raphael Gaines","Ala","1.98"," 103kg"
+"709",11662,"Danillo Aledes de Campos","Ala","1.85",NA
+"710",11582,"Daniel Macedo Soares","Ala/Armador","1.85",NA
+"711",11692,"Diogo Teixeira Aga","Armador","1.85",NA
+"712",1357,"Douglas Sales de Souza","Pivô","2.04",NA
+"713",11382,"Leonardo Degasperi Pegaia","Ala/Armador","1.8",NA
+"714",11233,"Matheus Lopes Guirro","Ala/Armador","1.85",NA
+"715",11695,"Nicolas Rodrigo Dias Ferraz","Ala","1.91",NA
+"716",11665,"Ítalo Cicotti","NOTFOUND",NA,NA
+"717",11701,"Carlos Henrique Miorin Gonçalves","Pivô","1.97",NA
+"718",11700,"Gabriel Jonathan Queiroz Ferreira","Ala/Pivô","2.03",NA
+"719",11702,"O’Neal Onami Mims","NOTFOUND",NA,NA
+"720",11556,"Leonardo Bispo de Souza","Pivô","2.06"," 106kg"
+"721",11668,"Paulo Felipe Silva Teodoro de Souza","Ala/Pivô","1.95",NA
+"722",11325,"Juan Henrique de Souza Balbino","Ala","1.88",NA
+"723",11671,"José Lucas de Castro Lima","Ala","1.9",NA
+"724",11705,"Worrel Oval Glen Clahar","Armador","1.78",NA
+"725",11680,"Henrique Gama Cerimelli","Ala","2"," 95kg"
+"726",753,"Vithor Henrique Juliatto","Pivô","2.02",NA
+"727",11816,"Gabriel Borrego Siqueira Martins","Ala/Armador","1.8",NA
+"728",11676,"Fernando Sanches Salsamendi","Ala","1.93",NA
+"729",11679,"Geovane da Silva Teixeira","Armador",NA," 88kg"
+"730",11300,"Bruno Borges Dos Santos","Ala","1.92",NA
+"731",11725,"Enzo Cafferata","Armador","1.87"," 86kg"
+"732",11727,"Vernon Athelston Goodridge","Pivô","2.06",NA
+"733",11726,"Matías Nocedal","Ala/Armador","1.92",NA
+"734",11750,"Fernando Augusto de Oliveira","Ala","1.98",NA
+"735",11743,"Kyle E. LaMonte","Ala/Armador","1.91",NA
+"736",1147,"Leonardo Jacon Oliveira","Ala","1.96"," 97kg"
+"737",11138,"Alexey Thiago Pereira Borges","Armador","1.88"," 75kg"
+"738",11752,"Tadeu Santos Ferreira","Ala",NA,NA
+"739",11230,"Pedro Vitor Lopes Adão","Armador","1.89",NA
+"740",1310,"Leonardo Willians Fernandes dos Santos","Armador",NA," 80kg"
+"741",11682,"Lucas Gabriel Vezaro","Ala","1.85"," 80kg"
+"742",11964,"Stefano Pierotti Alles","Armador","1.8"," 80kg"
+"743",11929,"Pedro Alcantara Abbade Aguiar Faria","Ala","1.91",NA
+"744",11955,"Jason Michael Robinson","Ala/Armador","1.96",NA
+"745",11957,"João Paulo Lopes Batista","Pivô","2.06"," 120kg"
+"746",11529,"João Felipe Piovesan Amato","Ala/Armador","1.93",NA
+"747",11952,"Rafael Freire Luz","Armador","1.89",NA
+"748",11426,"Diego Ribeiro Dos Santos","Armador","1.85"," 76kg"
+"749",11959,"Taaj Shane Ridley","Ala/Pivô","1.97",NA
+"750",11961,"Victor Dias Ribeiro","Ala/Armador","1.89"," 70kg"
+"751",11406,"Matheus Silva Fontes","Pivô","1.77"," 60kg"
+"752",11960,"Christopher Joseph Gradnigo","Ala","2",NA
+"753",11962,"Leandro Moraes de Almeida","Pivô","1.97"," 80kg"
+"754",11313,"Rafael Cintra Ribeiro","Ala","1.95",NA
+"755",11970,"Dexter Grant Kernich-Drew","Ala","2",NA
+"756",11954,"Corderro L Bennett","Ala/Armador",NA," 81kg"
+"757",716,"Rafael de Oliveira Silva","Ala","1.97"," 100kg"
+"758",11969,"Isaac Carmelo Sosa Carrion","Ala","1.9",NA
+"759",11781,"Rubem de Moraes Compagnolo","Ala/Pivô","1.98"," 98kg"
+"760",11783,"Rodolfo Cesar Bellato","Ala/Pivô","1.98"," 100kg"
+"761",11785,"Daniel Grigol Três","Ala",NA,NA
+"762",991,"Maurício Fedrizzi Ferronato ","Armador",NA,NA
+"763",1322,"Luis Enrique  de Moraes Porto","Ala/Pivô",NA,NA
+"764",11958,"Gabriel Darin Aguirre","Pivô","2.08",NA
+"765",11966,"Tiago Botelho Alaluia","Armador","1.89",NA
+"766",11822,"Jonathan Knudsen Muller","Pivô",NA," 115kg"
+"767",11780,"Bruno José Macedo Ferreira","Ala/Pivô","2.02"," 106kg"
+"768",11968,"William Patrocínio dos Santos","Ala/Pivô","1.95",NA
+"769",11967,"José Jairo Santos Gonçalves Júnior","Ala","1.97",NA
+"770",11778,"Arthur Henrique Stela Bernardi","Ala/Pivô","2.07"," 103kg"
+"771",1317,"Pedro Paulo Moreira da Silva Rogerio Carlos","Ala",NA,NA
+"772",1309,"Victor André Camilo da Silva","Ala/Pivô","2.03"," 98kg"
+"773",11471,"Joel Pereira de Souza Júnior ","Ala",NA,NA
+"774",11930,"Felipe Braga Alfredo","Pivô","2.13"," 87kg"
+"775",11795,"Jackson Henrique Almeida da Silva","Ala/Armador","1.92",NA
+"776",11965,"Diego Vinícius Mendonça de Souza","Armador","1.8",NA
+"777",11764,"Guilherme Santos","Armador","1.89"," 86kg"
+"778",11730,"Jorge Guilherme Iglesias Junior","Ala/Pivô",NA," 85kg"
+"779",11630,"Felipe Sousa Cortes","Ala",NA,NA
+"780",11939,"Gabriel Picirillo dos Santos","Ala","1.9",NA
+"781",11779,"Henrique dos Santos Monteiro","Armador",NA,NA
+"782",1091,"Paulo Antônio da Costa Lourenço","Ala",NA," 93kg"
+"783",667,"Luiz Gustavo Alves Edwards","Ala","1.97",NA
+"784",11747,"Cassiano Marinho Bueno","Armador","1.85"," 85kg"
+"785",11745,"Igor Alexander Bernardes","Pivô",NA,NA
+"786",11971,"Gabriel Luiz Echer","Armador","1.8"," 84kg"
+"787",11746,"Rafael Domingues Marques Martins","Pivô","2.03"," 99kg"
+"788",11973,"Fabrício Paulino de Melo","Pivô",NA," 120kg"
+"789",1298,"José Mauro Barrozo Junior","Pivô","2",NA
+"790",11972,"Igor Teixeira Nascimento","Ala/Armador",NA," 97kg"
+"791",11912,"Gabriel Mendes da Silva","Pivô","2.07",NA
+"792",11699,"Igor Avelino","Ala","2"," 110kg"
+"793",11975,"Scott Rodgers","Ala/Armador","1.95"," 94kg"
+"794",11508,"Wilmar Borges Garcia","Ala/Pivô","2"," 100kg"
+"795",1348,"Matheus Coutinho Custódio Da Silva","Pivô",NA,NA
+"796",11793,"Nestor Ferreira Neto","Ala/Armador","1.83",NA
+"797",1176,"Lourival Peres Junior","Ala","1.92",NA
+"798",11214,"Henrique Cláudio de Oliveira","Armador","1.88"," 80kg"
+"799",11450,"Matheus da Silva Nascimento","Ala",NA," 77kg"
+"800",11422,"Victor  de Carvalho Silveira","Armador",NA," 80kg"
+"801",11770,"Lucas Cauê de Almeida Pereira","Pivô",NA," 116kg"
+"802",11769,"Aquiles Novo Ferreira","Ala",NA," 89kg"
+"803",11521,"Juliano Armani Monteiro Silva","Armador",NA,NA
+"804",11981,"Matheus Araujo Silveira","Ala/Pivô",NA," 90kg"
+"805",1287,"Rômulo Gusmão Costa",NA,NA,NA
+"806",11916,"Gabriel Crepaldi Volpato Galvanini",NA,NA,NA

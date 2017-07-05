@@ -1,0 +1,205 @@
+
+R is connected to the H2O cluster: 
+    H2O cluster uptime:         1 minutes 20 seconds 
+    H2O cluster version:        3.10.4.6 
+    H2O cluster version age:    2 months and 7 days  
+    H2O cluster name:           H2O_started_from_R_wellrangel_cqp686 
+    H2O cluster total nodes:    1 
+    H2O cluster total memory:   0.71 GB 
+    H2O cluster total cores:    4 
+    H2O cluster allowed cores:  4 
+    H2O cluster healthy:        TRUE 
+    H2O Connection ip:          localhost 
+    H2O Connection port:        54321 
+    H2O Connection proxy:       NA 
+    H2O Internal Security:      FALSE 
+    R Version:                  R version 3.3.3 (2017-03-06) 
+
+
+> options(scipen=20)
+
+> #h2o.set.seed(1234);
+> #nao ler toda hora
+> if (!file.exists("dadosOriginalCSV")) {
++   dadosOriginalCSV <- readData();
++   
++ }
+
+> treino <- getTreinoData(dadosOriginalCSV)
+
+> validacao <- getValidacaoData(dadosOriginalCSV)
+
+> teste <- getTesteData(dadosOriginalCSV)
+
+> treino.hex  <- as.h2o(treino) # convertendo df para formato h2o
+  |=======================================================================================================| 100%
+
+> validacao.hex  <- as.h2o(validacao) 
+  |=======================================================================================================| 100%
+
+> teste.hex  <- as.h2o(teste) 
+  |=======================================================================================================| 100%
+
+> x <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,"posicao", "ts_per", "eFG_per","ASTPer", "TurPer", "FTPer", "FG_per", "PirPer", "minutos_pa ..." ... [TRUNCATED] 
+
+> y <- "posicao"
+
+> hyper_parametersDP <- list(
++   hidden=list(c(32,32,32),c(64,64)),
++   input_dropout_ratio=c(0,0.05),
++   rate=c(0.01,0.02)
++   
++ )
+
+> #set search criteria
+> search_criteria <- list(strategy = "RandomDiscrete", max_models=100)
+
+> gridDL <- h2o.grid("deeplearning", 
++                    grid_id="dl_grid_test", 
++                    x=x, 
++                    y=y, 
++            .... [TRUNCATED] 
+  |=======================================================================================================| 100%
+
+> dl_sorted_grid <- h2o.getGrid(grid_id = "dl_grid_test", sort_by = "accuracy", decreasing = TRUE)
+
+> print(dl_sorted_grid, exact_quantiles=TRUE)
+<S4 Type Object>
+attr(,"grid_id")
+[1] "dl_grid_test"
+attr(,"model_ids")
+attr(,"model_ids")[[1]]
+[1] "dl_grid_test_model_6"
+
+attr(,"model_ids")[[2]]
+[1] "dl_grid_test_model_2"
+
+attr(,"model_ids")[[3]]
+[1] "dl_grid_test_model_4"
+
+attr(,"model_ids")[[4]]
+[1] "dl_grid_test_model_0"
+
+attr(,"model_ids")[[5]]
+[1] "dl_grid_test_model_5"
+
+attr(,"model_ids")[[6]]
+[1] "dl_grid_test_model_3"
+
+attr(,"model_ids")[[7]]
+[1] "dl_grid_test_model_1"
+
+attr(,"model_ids")[[8]]
+[1] "dl_grid_test_model_7"
+
+attr(,"hyper_names")
+attr(,"hyper_names")[[1]]
+[1] "hidden"
+
+attr(,"hyper_names")[[2]]
+[1] "input_dropout_ratio"
+
+attr(,"hyper_names")[[3]]
+[1] "rate"
+
+attr(,"failed_params")
+list()
+attr(,"failure_details")
+list()
+attr(,"failure_stack_traces")
+list()
+attr(,"failed_raw_params")
+<0 x 0 matrix>
+attr(,"summary_table")
+Hyper-Parameter Search Summary: ordered by decreasing accuracy
+        hidden input_dropout_ratio rate            model_ids           accuracy
+1     [64, 64]                0.05 0.02 dl_grid_test_model_6 0.6954787234042553
+2     [64, 64]                0.05 0.01 dl_grid_test_model_2 0.6954787234042553
+3 [32, 32, 32]                0.05 0.01 dl_grid_test_model_4 0.6901595744680851
+4 [32, 32, 32]                0.05 0.02 dl_grid_test_model_0 0.6901595744680851
+5     [64, 64]                 0.0 0.01 dl_grid_test_model_5             0.6875
+6     [64, 64]                 0.0 0.02 dl_grid_test_model_3             0.6875
+7 [32, 32, 32]                 0.0 0.02 dl_grid_test_model_1 0.6835106382978724
+8 [32, 32, 32]                 0.0 0.01 dl_grid_test_model_7 0.6835106382978724
+attr(,"class")
+[1] "H2OGrid"
+attr(,"class")attr(,"package")
+[1] "h2o"
+
+> # Grab the model_id based in AUC
+> best_dl_model_id <- gridDL@model_ids[[1]]
+
+> # The best model
+> best_dl <- h2o.getModel(best_dl_model_id)
+
+> print(h2o.performance(best_dl, valid=T))
+H2OMultinomialMetrics: deeplearning
+** Reported on validation data. **
+** Metrics reported on full validation frame **
+
+Validation Set Metrics: 
+=====================
+
+Extract validation frame with `h2o.getFrame("validacao")`
+MSE: (Extract with `h2o.mse`) 0.2572001
+RMSE: (Extract with `h2o.rmse`) 0.507149
+Logloss: (Extract with `h2o.logloss`) 0.8116924
+Mean Per-Class Error: 0.3656639
+Confusion Matrix: Extract with `h2o.confusionMatrix(<model>,valid = TRUE)`)
+=========================================================================
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         22          3       9       1    1 0.3889 =  14 / 36
+AlaArmador   5          7       0       4    0 0.5625 =   9 / 16
+AlaPivo      5          0      15       0    4 0.3750 =   9 / 24
+Armador      6          1       1      20    0 0.2857 =   8 / 28
+Pivo         0          0       8       0   29 0.2162 =   8 / 37
+Totals      38         11      33      25   34 0.3404 = 48 / 141
+
+Hit Ratio Table: Extract with `h2o.hit_ratio_table(<model>,valid = TRUE)`
+=======================================================================
+Top-5 Hit Ratios: 
+  k hit_ratio
+1 1  0.659574
+2 2  0.893617
+3 3  0.971631
+4 4  1.000000
+5 5  1.000000
+
+
+> my_varimpDL <- h2o.varimp(best_dl)
+
+> barplot(my_varimpDL$scaled_importance,
++         names.arg = my_varimpDL$variable,
++         space = 1,
++         las = 2,
++         main = "Variabl ..." ... [TRUNCATED] 
+
+> model = best_dl
+
+> # Summary of the best model
+> pred2 = h2o.predict(object = model, newdata = teste.hex)
+  |=======================================================================================================| 100%
+
+> dataset_pred <- as.data.frame(pred2)
+
+> sub_reg <- data.frame(id_jogador = teste$id_jogador,  id_partida = teste$id_partida, temporada = teste$nome_temporada, posicao =  dataset_pred$predi .... [TRUNCATED] 
+
+> final <- cbind(dataset_pred, teste ) 
+
+> #erro =  sqldf( "select * from final where predict != posicao")
+> 
+> perf <- h2o.performance(model, teste.hex)
+
+> h2o.confusionMatrix(perf)
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         26          3       5       1    0 0.2571 =   9 / 35
+AlaArmador   5          8       0       0    0 0.3846 =   5 / 13
+AlaPivo      5          0      13       0    3 0.3810 =   8 / 21
+Armador      3          3       1      18    0 0.2800 =   7 / 25
+Pivo         0          0       8       0   19 0.2963 =   8 / 27
+Totals      39         14      27      19   22 0.3058 = 37 / 121
+
+> mean(pred2$predict==teste.hex$posicao)
+[1] 0.6942149

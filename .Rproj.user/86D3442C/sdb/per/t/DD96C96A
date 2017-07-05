@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#Name of algorithm to use in grid search (naivebayes, randomForest, kmeans, nb, deeplearning, naivebayes, pca).\n#0.558140 sem AV\n#0.5581395 com AV\n\nlibrary(h2o)\nlibrary(ggplot2)\nlibrary(data.table)\n\nset.seed(1234);  \n\nsource(\"scripts/functions.R\")\n\nh2o.init(nthreads = -1)\noptions(scipen=20)\n\n#nao ler toda hora\nif (!file.exists(\"dadosOriginalCSV\")) {\n  dadosOriginalCSV <- readData();\n  \n}\n\n\ntreino <- getTreinoData(dadosOriginalCSV)\nvalidacao <- getValidacaoData(dadosOriginalCSV)\nteste <- getTesteData(dadosOriginalCSV)\n\ntreino.hex  <- as.h2o(treino) # convertendo df para formato h2o\nvalidacao.hex  <- as.h2o(validacao) \nteste.hex  <- as.h2o(teste) \n\nx <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,\"posicao\",  \"minutos_partida\", \"idade\", \"pontos_time_casa\",\"pontos_time_fora\", \"id_jogador\",\"id_partida\", \"data_nascimento\", \"violacao\", \"faltas_recebidas\" ))  #retirando colunas nao necessarias ao processo\ny <- \"posicao\"\n\n#\"ts_per\", \"eFG_per\",\"ASTPer\", \"TurPer\", \"FTPer\", \"FG_per\", \"PirPer\",\n\n\n\n# specify the list of paramters\nhyper_parametersNB <- list(\n  laplace = c(0,0.5,1,2,3,4,5),\n  seed = 1234\n  \n)\n\n\ngridNB <- h2o.grid(\"naivebayes\", grid_id=\"naivebayes_grid_test\", \n                   x=x, \n                   y=y, \n                   training_frame=treino.hex, \n                   validation_frame=validacao.hex,\n                   nfolds = 50,\n                   hyper_params = hyper_parametersNB)\n\n\nnb_sorted_grid <- h2o.getGrid(grid_id = \"naivebayes_grid_test\", sort_by = \"accuracy\", decreasing = TRUE)\n\nprint(nb_sorted_grid)\n\n\n# Grab the model_id based in AUC\nbest_nb_model_id <- gridNB@model_ids[[1]]\n\n# The best model\nbest_nb <- h2o.getModel(best_nb_model_id)\n\nh2o.confusionMatrix(best_nb, valid = TRUE, metrics = 'accuracy')\n\n\n\nmodel = best_nb\n\n\npred2 = h2o.predict(object = model, newdata = teste.hex)\n\ndataset_pred = as.data.frame(pred2)\n\nfinal <- cbind(dataset_pred, teste ) \n\nperf <- h2o.performance(model, teste.hex)\nh2o.confusionMatrix(perf)\n\n\n# Summary of the best model\nsummary(pred2, exact_quantiles=TRUE)\n\nmean(pred2$predict==teste.hex$posicao)\n\n#h2o.shutdown(prompt=FALSE)",
+    "created" : 1498872341437.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3131306794",
+    "id" : "DD96C96A",
+    "lastKnownWriteTime" : 1499172861,
+    "last_content_update" : 1499172861140,
+    "path" : "~/Downloads/MDM 2/MDM Predict 5p/scripts/grid_naivebayes.R",
+    "project_path" : "scripts/grid_naivebayes.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

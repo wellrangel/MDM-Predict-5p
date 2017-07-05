@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(h2o)\nlibrary(ggplot2)\nlibrary(data.table)\nlibrary(plyr)\nlibrary(sqldf)\n\n\nsource(\"scripts/functions.R\")\n\nh2o.init(nthreads = -1)\noptions(scipen=20)\n\n#nao ler toda hora\nif (!file.exists(\"dadosOriginalCSV\")) {\n  dadosOriginalCSV <- readData();\n  \n}\n\n\ntreino <- getTreinoData(dadosOriginalCSV)\nvalidacao <- getValidacaoData(dadosOriginalCSV)\nteste <- getTesteData(dadosOriginalCSV)\n\ntreino.hex  <- as.h2o(treino) # convertendo df para formato h2o\nvalidacao.hex  <- as.h2o(validacao) \nteste.hex  <- as.h2o(teste) \n\nx <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,\"posicao\",  \"ts_per\", \"eFG_per\",\"ASTPer\", \"TurPer\", \"FTPer\", \"FG_per\", \"PirPer\", \"minutos_partida\", \"pontos_time_casa\",\"pontos_time_fora\", \"idade\", \"id_jogador\",\"id_partida\", \"data_nascimento\", \"violacao\", \"faltas_recebidas\" ))  #retirando colunas nao necessarias ao processo\ny <- \"posicao\"\n\n\n\n\nmax_depth_opts = c(3, 5, 9)\nsample_rate_opts = c(0.8, 1.0)\ncol_sample_rate_opts = c(0.2, 0.5, 1.0)\nntrees_opts = c(10, 200)\nlearn_rate_opts = c(0.1, 0.01)\n\n\n# specify the list of paramters\n\nhyper_parametersRF = list(ntrees = ntrees_opts, mtries = 7, max_depth = max_depth_opts)\ngridRF <- h2o.grid(\"randomForest\", grid_id=\"randomForest_grid_test\", \n                   x=x, \n                   y=y, \n                   training_frame=treino.hex, \n                   validation_frame=validacao.hex,\n                   nfolds=30,\n                   seed=1234,\n                   hyper_params = hyper_parametersRF)\n\n\nRF_sorted_grid <- h2o.getGrid(grid_id = \"randomForest_grid_test\", sort_by = \"accuracy\", decreasing = TRUE)\n\nprint (RF_sorted_grid)\n# Grab the model_id based in AUC\nbest_RF_model_id <- gridRF@model_ids[[1]]\n\n# The best model\nbest_RF <- h2o.getModel(best_RF_model_id)\n\n\nh2o.confusionMatrix(best_RF, valid = TRUE, metrics = 'accuracy')\n\n\nscoring_history <- as.data.frame(best_RF@model$scoring_history)\nplot(scoring_history$number_of_trees, scoring_history$training_MSE, type=\"p\") #training mse\n\n## get the actual number of trees\nntrees <- best_RF@model$model_summary$number_of_trees\nprint(ntrees)\n\n\n\nmy_varimpRF <- h2o.varimp(best_RF)\nbarplot(my_varimpRF$scaled_importance,\n        names.arg = my_varimpRF$variable,\n        space = 1,\n        las = 2,\n        main = \"Variable Importance: RF GRID\")\n\np <- ggplot(data = my_varimpRF, aes(x = variable, y =scaled_importance ))\n\np <- p + geom_bar(stat = \"identity\")\np <- p + coord_flip()\np\n\n\n\nmodel = best_RF\n\n\npred2 = h2o.predict(object = model, newdata = teste.hex)\n\ndataset_pred = as.data.frame(pred2)\n\nfinal <- cbind(dataset_pred, teste ) \nerro =  sqldf( \"select * from final where predict != posicao\")\n\nperf <- h2o.performance(model, teste.hex)\nh2o.confusionMatrix(perf)\n\n\n# Summary of the best model\nsummary(pred2, exact_quantiles=TRUE)\n\nmean(pred2$predict==teste.hex$posicao)\n\n\n#h2o.shutdown(prompt=FALSE)",
+    "created" : 1498909849374.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "899620127",
+    "id" : "76E3E29F",
+    "lastKnownWriteTime" : 1499185483,
+    "last_content_update" : 1499185483114,
+    "path" : "~/Downloads/MDM 2/MDM Predict 5p/scripts/grid_RandomForest.R",
+    "project_path" : "scripts/grid_RandomForest.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

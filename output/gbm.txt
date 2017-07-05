@@ -1,0 +1,213 @@
+
+Starting H2O JVM and connecting: ... Connection successful!
+
+R is connected to the H2O cluster: 
+    H2O cluster uptime:         4 seconds 108 milliseconds 
+    H2O cluster version:        3.10.4.6 
+    H2O cluster version age:    2 months and 6 days  
+    H2O cluster name:           H2O_started_from_R_wellrangel_cqp686 
+    H2O cluster total nodes:    1 
+    H2O cluster total memory:   0.89 GB 
+    H2O cluster total cores:    4 
+    H2O cluster allowed cores:  4 
+    H2O cluster healthy:        TRUE 
+    H2O Connection ip:          localhost 
+    H2O Connection port:        54321 
+    H2O Connection proxy:       NA 
+    H2O Internal Security:      FALSE 
+    R Version:                  R version 3.3.3 (2017-03-06) 
+
+
+> options(scipen=20)
+
+> #nao ler toda hora
+> if (!file.exists("dadosOriginalCSV")) {
++   dadosOriginalCSV <- readData();
++   
++ }
+
+> treino <- getTreinoData(dadosOriginalCSV)
+
+> validacao <- getValidacaoData(dadosOriginalCSV)
+
+> teste <- getTesteData(dadosOriginalCSV)
+
+> treino.hex  <- as.h2o(treino) # convertendo df para formato h2o
+  |===============================================================================| 100%
+
+> validacao.hex  <- as.h2o(validacao) 
+  |===============================================================================| 100%
+
+> teste.hex  <- as.h2o(teste) 
+  |===============================================================================| 100%
+
+> x <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,"posicao", "ts_per", "eFG_per","ASTPer", "TurPer", "FTPer", "FG_per", "PirPer", "minutos_pa ..." ... [TRUNCATED] 
+
+> y <- "posicao"
+
+> hyper_parametersGM = list( 
++   ## restrict the search to the range of max_depth established above
++   #max_depth = seq(minDepth,maxDepth,1),        .... [TRUNCATED] 
+
+> search_criteriaGM = list(
++   ## Random grid search
++   strategy = "RandomDiscrete",      
++   
++   ## limit the runtime to 60 minutes
++   max_runti .... [TRUNCATED] 
+
+> grid <- h2o.grid(
++   ## hyper parameters
++   hyper_params = hyper_parametersGM,
++   
++   ## hyper-parameter search configuration (see above)
++   se .... [TRUNCATED] 
+  |===============================================================================| 100%
+
+> ## Sort the grid models by AUC
+> sortedGrid <- h2o.getGrid("gbm_grid_test", sort_by = "accuracy", decreasing = TRUE)    
+
+> sortedGrid
+H2O Grid Details
+================
+
+Grid ID: gbm_grid_test 
+Used hyper parameters: 
+  -  col_sample_rate 
+  -  col_sample_rate_change_per_level 
+  -  col_sample_rate_per_tree 
+  -  histogram_type 
+  -  min_rows 
+  -  min_split_improvement 
+  -  nbins 
+  -  nbins_cats 
+  -  ntrees 
+  -  sample_rate 
+Number of models: 97 
+Number of failed models: 0 
+
+Hyper-Parameter Search Summary: ordered by decreasing accuracy
+  col_sample_rate col_sample_rate_change_per_level col_sample_rate_per_tree
+1            0.62                             0.96                     0.68
+2            0.92                             0.93                     0.56
+3            0.81                             1.06                     0.68
+4            0.49                             1.04                     0.94
+5            0.96                             0.94                     0.62
+   histogram_type min_rows min_split_improvement nbins nbins_cats ntrees sample_rate
+1      RoundRobin      8.0                   0.0  1024         64     50        0.96
+2 QuantilesGlobal      2.0                1.0E-4  1024         32     35        0.93
+3 QuantilesGlobal     16.0                1.0E-6   128         64     50        0.77
+4 QuantilesGlobal     16.0                1.0E-8   128        512     50        0.86
+5 QuantilesGlobal      8.0                1.0E-8   128       2048     50        0.57
+               model_ids           accuracy
+1 gbm_grid_test_model_76  0.726063829787234
+2 gbm_grid_test_model_96 0.7207446808510638
+3 gbm_grid_test_model_29 0.7180851063829787
+4 gbm_grid_test_model_68 0.7180851063829787
+5 gbm_grid_test_model_95  0.711436170212766
+
+---
+   col_sample_rate col_sample_rate_change_per_level col_sample_rate_per_tree
+92             0.7                             0.92                     0.26
+93             0.4                             0.91                     0.34
+94             0.2                             0.94                     0.49
+95            0.42                             1.08                     0.45
+96             0.5                             1.03                     0.45
+97            0.45                             1.06                     0.28
+    histogram_type min_rows min_split_improvement nbins nbins_cats ntrees sample_rate
+92      RoundRobin     64.0                1.0E-6    16       1024     10        0.42
+93 UniformAdaptive     64.0                1.0E-4   128       4096     10        0.48
+94 QuantilesGlobal     64.0                1.0E-8   128        512     10         0.4
+95      RoundRobin    256.0                1.0E-4    64       2048     10        0.35
+96      RoundRobin    256.0                   0.0    16         16     10        0.28
+97 UniformAdaptive     64.0                1.0E-8  1024       1024     10        0.28
+                model_ids           accuracy
+92 gbm_grid_test_model_84 0.5638297872340425
+93 gbm_grid_test_model_15 0.5332446808510638
+94 gbm_grid_test_model_28 0.5265957446808511
+95 gbm_grid_test_model_16 0.5079787234042553
+96 gbm_grid_test_model_58 0.5039893617021276
+97 gbm_grid_test_model_92 0.5013297872340425
+
+> glm_sorted_grid <- h2o.getGrid(grid_id = "gbm_grid_test", sort_by = "accuracy", decreasing = TRUE)
+
+> # Grab the model_id based in AUC
+> best_glm_model_id <- grid@model_ids[[1]]
+
+> # The best model
+> best_glm <- h2o.getModel(best_glm_model_id)
+
+> scoring_history <- as.data.frame(best_glm@model$scoring_history)
+
+> plot(scoring_history$number_of_trees, scoring_history$training_MSE, type="p") #training mse
+
+> my_varimpGM <- h2o.varimp(best_glm)
+
+> barplot(my_varimpGM$scaled_importance,
++         names.arg = my_varimpGM$variable,
++         space = 1,
++         las = 2,
++         main = "Variabl ..." ... [TRUNCATED] 
+
+> p <- ggplot(data = my_varimpGM, aes(x = variable, y =scaled_importance ))
+
+> p <- p + geom_bar(stat = "identity")
+
+> p <- p + coord_flip()
+
+> p
+
+> model = best_glm
+
+> pred2 = h2o.predict(object = model, newdata = teste.hex)
+  |===============================================================================| 100%
+
+> dataset_pred <- as.data.frame(pred2)
+
+> sub_reg <- data.frame(id_jogador = teste$id_jogador,  id_partida = teste$id_partida, temporada = teste$nome_temporada, posicao =  dataset_pred$predi .... [TRUNCATED] 
+
+> final <- cbind(dataset_pred, teste ) 
+
+> #erro =  sqldf( "select * from final where predict != posicao")
+> 
+> perf <- h2o.performance(model, teste.hex)
+
+> h2o.confusionMatrix(perf)
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         28          0       3       2    2 0.2000 =   7 / 35
+AlaArmador   4          8       0       1    0 0.3846 =   5 / 13
+AlaPivo      4          0       8       0    9 0.6190 =  13 / 21
+Armador      0          2       0      23    0 0.0800 =   2 / 25
+Pivo         1          0       4       0   22 0.1852 =   5 / 27
+Totals      37         10      15      26   33 0.2645 = 32 / 121
+
+> # Summary of the best model
+> summary(pred2, exact_quantiles=TRUE)
+ predict        Ala                 AlaArmador          AlaPivo           
+ Ala       :37  Min.   :0.0009452   Min.   :0.0008157   Min.   :0.001809  
+ Pivo      :33  1st Qu.:0.0247638   1st Qu.:0.0079249   1st Qu.:0.014242  
+ Armador   :26  Median :0.1736256   Median :0.0215896   Median :0.038630  
+ AlaPivo   :15  Mean   :0.2853419   Mean   :0.1049679   Mean   :0.147658  
+ AlaArmador:10  3rd Qu.:0.5007776   3rd Qu.:0.1286534   3rd Qu.:0.186577  
+                Max.   :0.9792305   Max.   :0.7335340   Max.   :0.909519  
+ Armador             Pivo               
+ Min.   :0.0007183   Min.   :0.0008291  
+ 1st Qu.:0.0077524   1st Qu.:0.0113747  
+ Median :0.0300426   Median :0.0317748  
+ Mean   :0.2061397   Mean   :0.2558927  
+ 3rd Qu.:0.2584481   3rd Qu.:0.5202189  
+ Max.   :0.9901075   Max.   :0.9917944  
+
+> #browser()
+> 
+> 
+> 
+> mean(pred2$predict==teste.hex$posicao)
+[1] 0.7355372
+
+> h2o.shutdown(prompt=FALSE)
+[1] TRUE
+
+> #return (mean(pred2$predict==teste.hex$posicao))
+> 

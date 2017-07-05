@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#Name of algorithm to use in grid search (naivebayes, randomForest, kmeans, nb, deeplearning, naivebayes, pca).\n\nlibrary(h2o)\nlibrary(ggplot2)\nlibrary(data.table)\n\nNB<-function(h2o, treino.hex, validacao.hex, teste.hex, x, y)\n{\n  \n#hyper_parameters = list(ntrees = ntrees_opts, learn_rate = learn_rate_opts)\n\n\nmax_depth_opts = c(3, 5, 9)\nsample_rate_opts = c(0.8, 1.0)\ncol_sample_rate_opts = c(0.2, 0.5, 1.0)\nntrees_opts = c(50, 150)\nlearn_rate_opts = c(0.1, 0.01)\n\n\n# specify the list of paramters\nhyper_parametersNB <- list(\n  laplace = c(0,0.5,1,2,3)\n)\n\n\ngridNB <- h2o.grid(\"naivebayes\", grid_id=\"naivebayes_grid_test\", \n                   x=x, \n                   y=y, \n                   training_frame=treino.hex, \n                   validation_frame=validacao.hex,\n                   nfolds = 10,\n                   hyper_params = hyper_parametersNB)\n\n\nnb_sorted_grid <- h2o.getGrid(grid_id = \"naivebayes_grid_test\", sort_by = \"accuracy\", decreasing = FALSE)\n\nprint(nb_sorted_grid)\n\n#grid_models <- lapply(grid@model_ids, function(mid) {\n#  model = h2o.getModel(mid)\n#})\n\n\n# Grab the model_id based in AUC\nbest_nb_model_id <- gridNB@model_ids[[1]]\n\n# The best model\nbest_nb <- h2o.getModel(best_nb_model_id)\n\nh2o.confusionMatrix(best_nb, valid = TRUE, metrics = 'accuracy')\n\n\n\nmodel = best_nb\n\n\npred2 = h2o.predict(object = model, newdata = teste.hex)\n\ndataset_pred = as.data.frame(pred2)\n\nfinal <- cbind(dataset_pred, teste ) \n\nperf <- h2o.performance(model, teste.hex)\nh2o.confusionMatrix(perf)\n\n\n# Summary of the best model\nsummary(pred2, exact_quantiles=TRUE)\n\nmean(pred2$predict==teste.hex$posicao)\n\n\n\n\nmy_varimpNB <- h2o.varimp(best_nb)\nbarplot(my_varimpNB$scaled_importance,\n        names.arg = my_varimpNB$variable,\n        space = 1,\n        las = 2,\n        main = \"Variable Importance: NB GRID\")\n\np <- ggplot(data = my_varimpNB, aes(x = variable, y =scaled_importance ))\n\np <- p + geom_bar(stat = \"identity\")\np <- p + coord_flip()\np\n\n\nreturn (mean(pred2$predict==teste.hex$posicao))\n\n}",
+    "created" : 1498504618669.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2110983723",
+    "id" : "C9238270",
+    "lastKnownWriteTime" : 1498840605,
+    "last_content_update" : 1498840605898,
+    "path" : "~/Downloads/MDM/MDM Predict 5p/scripts/grid_naivebayes.R",
+    "project_path" : "scripts/grid_naivebayes.R",
+    "properties" : {
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1498069497821.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "FF68CAD4",
+    "lastKnownWriteTime" : 7308604914264011873,
+    "last_content_update" : 1498069497821,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "B7A55D2C",
+        "caption" : "totaldados",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=totaldados&cache_key=B7A55D2C",
+        "displayedObservations" : "1883",
+        "environment" : "",
+        "object" : "totaldados",
+        "preview" : "0",
+        "totalObservations" : "1883",
+        "variables" : "38"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

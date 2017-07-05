@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1498072325857.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4513857C",
+    "lastKnownWriteTime" : 3762536693881712176,
+    "last_content_update" : 1498072325857,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "BA498ED",
+        "caption" : "validacao",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=validacao&cache_key=BA498ED",
+        "displayedObservations" : "254",
+        "environment" : "",
+        "object" : "validacao",
+        "preview" : "0",
+        "totalObservations" : "254",
+        "variables" : "38"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

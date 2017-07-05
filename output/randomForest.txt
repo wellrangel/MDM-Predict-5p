@@ -1,0 +1,601 @@
+> source('~/Downloads/MDM 2/MDM Predict 5p/scripts/grid_RandomForest.R', echo=TRUE)
+
+> library(ggplot2)
+
+> library(data.table)
+
+> library(plyr)
+
+> library(sqldf)
+
+> source("scripts/functions.R")
+
+> h2o.init(nthreads = -1)
+ Connection successful!
+
+R is connected to the H2O cluster: 
+    H2O cluster uptime:         2 minutes 47 seconds 
+    H2O cluster version:        3.10.4.6 
+    H2O cluster version age:    2 months and 6 days  
+    H2O cluster name:           H2O_started_from_R_wellrangel_cqp686 
+    H2O cluster total nodes:    1 
+    H2O cluster total memory:   0.77 GB 
+    H2O cluster total cores:    4 
+    H2O cluster allowed cores:  4 
+    H2O cluster healthy:        TRUE 
+    H2O Connection ip:          localhost 
+    H2O Connection port:        54321 
+    H2O Connection proxy:       NA 
+    H2O Internal Security:      FALSE 
+    R Version:                  R version 3.3.3 (2017-03-06) 
+
+
+> options(scipen=20)
+
+> #nao ler toda hora
+> if (!file.exists("dadosOriginalCSV")) {
++   dadosOriginalCSV <- readData();
++   
++ }
+
+> treino <- getTreinoData(dadosOriginalCSV)
+
+> validacao <- getValidacaoData(dadosOriginalCSV)
+
+> teste <- getTesteData(dadosOriginalCSV)
+
+> treino.hex  <- as.h2o(treino) # convertendo df para formato h2o
+  |======================================================================================================================================| 100%
+
+> validacao.hex  <- as.h2o(validacao) 
+  |======================================================================================================================================| 100%
+
+> teste.hex  <- as.h2o(teste) 
+  |======================================================================================================================================| 100%
+
+> x <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,"posicao", "ts_per", "eFG_per","ASTPer", "TurPer", "FTPer", "FG_per", "PirPer", "minutos_pa ..." ... [TRUNCATED] 
+
+> y <- "posicao"
+
+> max_depth_opts = c(3, 5, 9)
+
+> sample_rate_opts = c(0.8, 1.0)
+
+> col_sample_rate_opts = c(0.2, 0.5, 1.0)
+
+> ntrees_opts = c(10, 50)
+
+> learn_rate_opts = c(0.1, 0.01)
+
+> # specify the list of paramters
+> 
+> hyper_parametersRF = list(ntrees = ntrees_opts, mtries = 7, max_depth = max_depth_opts)
+
+> gridRF <- h2o.grid("randomForest", grid_id="randomForest_grid_test", 
++                    x=x, 
++                    y=y, 
++                    tra .... [TRUNCATED] 
+  |======================================================================================================================================| 100%
+
+> RF_sorted_grid <- h2o.getGrid(grid_id = "randomForest_grid_test", sort_by = "accuracy", decreasing = TRUE)
+
+> print (RF_sorted_grid)
+H2O Grid Details
+================
+
+Grid ID: randomForest_grid_test 
+Used hyper parameters: 
+  -  max_depth 
+  -  mtries 
+  -  ntrees 
+Number of models: 6 
+Number of failed models: 0 
+
+Hyper-Parameter Search Summary: ordered by decreasing accuracy
+  max_depth mtries ntrees                      model_ids           accuracy
+1         9      7     50 randomForest_grid_test_model_5 0.7034574468085106
+2         9      7     10 randomForest_grid_test_model_2 0.7021276595744681
+3         3      7     50 randomForest_grid_test_model_3 0.6795212765957447
+4         5      7     50 randomForest_grid_test_model_4  0.675531914893617
+5         5      7     10 randomForest_grid_test_model_1 0.6675531914893618
+6         3      7     10 randomForest_grid_test_model_0 0.6476063829787234
+
+> # Grab the model_id based in AUC
+> best_RF_model_id <- gridRF@model_ids[[1]]
+
+> # The best model
+> best_RF <- h2o.getModel(best_RF_model_id)
+
+> h2o.confusionMatrix(best_RF, valid = TRUE, metrics = 'accuracy')
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         26          2       6       1    1 0.2778 =  10 / 36
+AlaArmador   6          7       0       3    0 0.5625 =   9 / 16
+AlaPivo      4          0      15       1    4 0.3750 =   9 / 24
+Armador      3          3       0      22    0 0.2143 =   6 / 28
+Pivo         2          0       3       0   32 0.1351 =   5 / 37
+Totals      41         12      24      27   37 0.2766 = 39 / 141
+
+> scoring_history <- as.data.frame(best_RF@model$scoring_history)
+
+> plot(scoring_history$number_of_trees, scoring_history$training_MSE, type="p") #training mse
+
+> ## get the actual number of trees
+> ntrees <- best_RF@model$model_summary$number_of_trees
+
+> print(ntrees)
+[1] 50
+
+> my_varimpRF <- h2o.varimp(best_RF)
+
+> barplot(my_varimpRF$scaled_importance,
++         names.arg = my_varimpRF$variable,
++         space = 1,
++         las = 2,
++         main = "Variabl ..." ... [TRUNCATED] 
+
+> p <- ggplot(data = my_varimpRF, aes(x = variable, y =scaled_importance ))
+
+> p <- p + geom_bar(stat = "identity")
+
+> p <- p + coord_flip()
+
+> p
+
+> model = best_RF
+
+> pred2 = h2o.predict(object = model, newdata = teste.hex)
+  |======================================================================================================================================| 100%
+
+> dataset_pred = as.data.frame(pred2)
+
+> final <- cbind(dataset_pred, teste ) 
+
+> erro =  sqldf( "select * from final where predict != posicao")
+
+> perf <- h2o.performance(model, teste.hex)
+
+> h2o.confusionMatrix(perf)
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         26          3       4       2    0 0.2571 =   9 / 35
+AlaArmador   7          5       0       1    0 0.6154 =   8 / 13
+AlaPivo      4          0      11       0    6 0.4762 =  10 / 21
+Armador      4          1       0      20    0 0.2000 =   5 / 25
+Pivo         1          0       2       0   24 0.1111 =   3 / 27
+Totals      42          9      17      23   30 0.2893 = 35 / 121
+
+> # Summary of the best model
+> summary(pred2, exact_quantiles=TRUE)
+ predict        Ala               AlaArmador         AlaPivo           Armador           Pivo              
+ Ala       :42  Min.   :0.00000   Min.   :0.000000   Min.   :0.00000   Min.   :0.00000   Min.   :0.000000  
+ Pivo      :30  1st Qu.:0.07233   1st Qu.:0.001092   1st Qu.:0.01936   1st Qu.:0.00000   1st Qu.:0.005788  
+ Armador   :23  Median :0.26400   Median :0.056445   Median :0.07136   Median :0.04591   Median :0.041496  
+ AlaPivo   :17  Mean   :0.28738   Mean   :0.126343   Mean   :0.16368   Mean   :0.19172   Mean   :0.230886  
+ AlaArmador: 9  3rd Qu.:0.45357   3rd Qu.:0.191144   3rd Qu.:0.24104   3rd Qu.:0.24926   3rd Qu.:0.377836  
+                Max.   :0.88922   Max.   :0.643817   Max.   :0.75592   Max.   :0.93935   Max.   :1.000000  
+
+> mean(pred2$predict==teste.hex$posicao)
+[1] 0.7107438
+> source('~/Downloads/MDM 2/MDM Predict 5p/scripts/grid_RandomForest.R', echo=TRUE)
+
+> #Name of algorithm to use in grid search (naivebayes, randomForest, kmeans, RF, deeplearning, naivebayes, pca).
+> #0.7093023 ultimo
+> #0.7209302 sem .... [TRUNCATED] 
+
+> library(ggplot2)
+
+> library(data.table)
+
+> library(plyr)
+
+> library(sqldf)
+
+> source("scripts/functions.R")
+
+> h2o.init(nthreads = -1)
+ Connection successful!
+
+R is connected to the H2O cluster: 
+    H2O cluster uptime:         4 minutes 11 seconds 
+    H2O cluster version:        3.10.4.6 
+    H2O cluster version age:    2 months and 6 days  
+    H2O cluster name:           H2O_started_from_R_wellrangel_cqp686 
+    H2O cluster total nodes:    1 
+    H2O cluster total memory:   0.77 GB 
+    H2O cluster total cores:    4 
+    H2O cluster allowed cores:  4 
+    H2O cluster healthy:        TRUE 
+    H2O Connection ip:          localhost 
+    H2O Connection port:        54321 
+    H2O Connection proxy:       NA 
+    H2O Internal Security:      FALSE 
+    R Version:                  R version 3.3.3 (2017-03-06) 
+
+
+> options(scipen=20)
+
+> #nao ler toda hora
+> if (!file.exists("dadosOriginalCSV")) {
++   dadosOriginalCSV <- readData();
++   
++ }
+
+> treino <- getTreinoData(dadosOriginalCSV)
+
+> validacao <- getValidacaoData(dadosOriginalCSV)
+
+> teste <- getTesteData(dadosOriginalCSV)
+
+> treino.hex  <- as.h2o(treino) # convertendo df para formato h2o
+  |======================================================================================================================================| 100%
+
+> validacao.hex  <- as.h2o(validacao) 
+  |======================================================================================================================================| 100%
+
+> teste.hex  <- as.h2o(teste) 
+  |======================================================================================================================================| 100%
+
+> x <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,"posicao", "ts_per", "eFG_per","ASTPer", "TurPer", "FTPer", "FG_per", "PirPer", "minutos_pa ..." ... [TRUNCATED] 
+
+> y <- "posicao"
+
+> max_depth_opts = c(3, 5, 9)
+
+> sample_rate_opts = c(0.8, 1.0)
+
+> col_sample_rate_opts = c(0.2, 0.5, 1.0)
+
+> ntrees_opts = c(10, 100)
+
+> learn_rate_opts = c(0.1, 0.01)
+
+> # specify the list of paramters
+> 
+> hyper_parametersRF = list(ntrees = ntrees_opts, mtries = 7, max_depth = max_depth_opts)
+
+> gridRF <- h2o.grid("randomForest", grid_id="randomForest_grid_test", 
++                    x=x, 
++                    y=y, 
++                    tra .... [TRUNCATED] 
+  |======================================================================================================================================| 100%
+
+> RF_sorted_grid <- h2o.getGrid(grid_id = "randomForest_grid_test", sort_by = "accuracy", decreasing = TRUE)
+
+> print (RF_sorted_grid)
+H2O Grid Details
+================
+
+Grid ID: randomForest_grid_test 
+Used hyper parameters: 
+  -  max_depth 
+  -  mtries 
+  -  ntrees 
+Number of models: 12 
+Number of failed models: 0 
+
+Hyper-Parameter Search Summary: ordered by decreasing accuracy
+   max_depth mtries ntrees                       model_ids           accuracy
+1          9      7     50  randomForest_grid_test_model_5 0.7034574468085106
+2          9      7     10  randomForest_grid_test_model_2 0.7021276595744681
+3          9      7    100 randomForest_grid_test_model_11 0.7007978723404256
+4          9      7     10  randomForest_grid_test_model_8 0.6928191489361701
+5          5      7    100 randomForest_grid_test_model_10 0.6821808510638299
+6          3      7     50  randomForest_grid_test_model_3 0.6795212765957447
+7          5      7     50  randomForest_grid_test_model_4  0.675531914893617
+8          5      7     10  randomForest_grid_test_model_7 0.6742021276595744
+9          5      7     10  randomForest_grid_test_model_1 0.6675531914893618
+10         3      7    100  randomForest_grid_test_model_9 0.6648936170212766
+11         3      7     10  randomForest_grid_test_model_6 0.6555851063829787
+12         3      7     10  randomForest_grid_test_model_0 0.6476063829787234
+
+> # Grab the model_id based in AUC
+> best_RF_model_id <- gridRF@model_ids[[1]]
+
+> # The best model
+> best_RF <- h2o.getModel(best_RF_model_id)
+
+> h2o.confusionMatrix(best_RF, valid = TRUE, metrics = 'accuracy')
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         25          2       6       1    2 0.3056 =  11 / 36
+AlaArmador   7          6       0       3    0 0.6250 =  10 / 16
+AlaPivo      5          0      14       0    5 0.4167 =  10 / 24
+Armador      3          2       0      23    0 0.1786 =   5 / 28
+Pivo         2          0       2       0   33 0.1081 =   4 / 37
+Totals      42         10      22      27   40 0.2837 = 40 / 141
+
+> scoring_history <- as.data.frame(best_RF@model$scoring_history)
+
+> plot(scoring_history$number_of_trees, scoring_history$training_MSE, type="p") #training mse
+
+> ## get the actual number of trees
+> ntrees <- best_RF@model$model_summary$number_of_trees
+
+> print(ntrees)
+[1] 100
+
+> my_varimpRF <- h2o.varimp(best_RF)
+
+> barplot(my_varimpRF$scaled_importance,
++         names.arg = my_varimpRF$variable,
++         space = 1,
++         las = 2,
++         main = "Variabl ..." ... [TRUNCATED] 
+
+> p <- ggplot(data = my_varimpRF, aes(x = variable, y =scaled_importance ))
+
+> p <- p + geom_bar(stat = "identity")
+
+> p <- p + coord_flip()
+
+> p
+
+> model = best_RF
+
+> pred2 = h2o.predict(object = model, newdata = teste.hex)
+  |======================================================================================================================================| 100%
+
+> dataset_pred = as.data.frame(pred2)
+
+> final <- cbind(dataset_pred, teste ) 
+
+> erro =  sqldf( "select * from final where predict != posicao")
+
+> perf <- h2o.performance(model, teste.hex)
+
+> h2o.confusionMatrix(perf)
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         26          1       4       2    2 0.2571 =   9 / 35
+AlaArmador   7          5       0       1    0 0.6154 =   8 / 13
+AlaPivo      4          0      11       0    6 0.4762 =  10 / 21
+Armador      3          1       0      21    0 0.1600 =   4 / 25
+Pivo         2          0       3       0   22 0.1852 =   5 / 27
+Totals      42          7      18      24   30 0.2975 = 36 / 121
+
+> # Summary of the best model
+> summary(pred2, exact_quantiles=TRUE)
+ predict        Ala               AlaArmador         AlaPivo           Armador            Pivo              
+ Ala       :42  Min.   :0.00000   Min.   :0.000000   Min.   :0.00000   Min.   :0.000000   Min.   :0.000000  
+ Pivo      :30  1st Qu.:0.06288   1st Qu.:0.009298   1st Qu.:0.01703   1st Qu.:0.002366   1st Qu.:0.006173  
+ Armador   :24  Median :0.27597   Median :0.065914   Median :0.06220   Median :0.043666   Median :0.043213  
+ AlaPivo   :18  Mean   :0.28799   Mean   :0.125496   Mean   :0.16125   Mean   :0.194094   Mean   :0.231169  
+ AlaArmador: 7  3rd Qu.:0.44908   3rd Qu.:0.193181   3rd Qu.:0.23826   3rd Qu.:0.287368   3rd Qu.:0.385956  
+                Max.   :0.86755   Max.   :0.634188   Max.   :0.75552   Max.   :0.924204   Max.   :1.000000  
+
+> mean(pred2$predict==teste.hex$posicao)
+[1] 0.7024793
+> pred2
+     predict        Ala AlaArmador    AlaPivo     Armador        Pivo
+1 AlaArmador 0.34137489 0.41123170 0.02133119 0.218875232 0.007186991
+2        Ala 0.71367014 0.15525983 0.09410614 0.000618878 0.036345017
+3    Armador 0.02220576 0.07490398 0.01141589 0.890138593 0.001335772
+4        Ala 0.59067715 0.03364003 0.05238961 0.287368273 0.035924937
+5       Pivo 0.00000000 0.00000000 0.05013814 0.010487434 0.939374425
+6        Ala 0.63724906 0.10239060 0.01703485 0.198715037 0.044610449
+
+[121 rows x 6 columns] 
+> perf
+H2OMultinomialMetrics: drf
+
+Test Set Metrics: 
+=====================
+
+MSE: (Extract with `h2o.mse`) 0.2538377
+RMSE: (Extract with `h2o.rmse`) 0.5038231
+Logloss: (Extract with `h2o.logloss`) 0.7017489
+Mean Per-Class Error: 0.3387806
+Confusion Matrix: Extract with `h2o.confusionMatrix(<model>, <data>)`)
+=========================================================================
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         26          1       4       2    2 0.2571 =   9 / 35
+AlaArmador   7          5       0       1    0 0.6154 =   8 / 13
+AlaPivo      4          0      11       0    6 0.4762 =  10 / 21
+Armador      3          1       0      21    0 0.1600 =   4 / 25
+Pivo         2          0       3       0   22 0.1852 =   5 / 27
+Totals      42          7      18      24   30 0.2975 = 36 / 121
+
+Hit Ratio Table: Extract with `h2o.hit_ratio_table(<model>, <data>)`
+=======================================================================
+Top-5 Hit Ratios: 
+  k hit_ratio
+1 1  0.702479
+2 2  0.925620
+3 3  0.991735
+4 4  1.000000
+5 5  1.000000
+
+> source('~/Downloads/MDM 2/MDM Predict 5p/scripts/grid_RandomForest.R', echo=TRUE)
+
+> #Name of algorithm to use in grid search (naivebayes, randomForest, kmeans, RF, deeplearning, naivebayes, pca).
+> #0.7093023 ultimo
+> #0.7209302 sem .... [TRUNCATED] 
+
+> library(ggplot2)
+
+> library(data.table)
+
+> library(plyr)
+
+> library(sqldf)
+
+> source("scripts/functions.R")
+
+> h2o.init(nthreads = -1)
+ Connection successful!
+
+R is connected to the H2O cluster: 
+    H2O cluster uptime:         5 minutes 32 seconds 
+    H2O cluster version:        3.10.4.6 
+    H2O cluster version age:    2 months and 6 days  
+    H2O cluster name:           H2O_started_from_R_wellrangel_cqp686 
+    H2O cluster total nodes:    1 
+    H2O cluster total memory:   0.56 GB 
+    H2O cluster total cores:    4 
+    H2O cluster allowed cores:  4 
+    H2O cluster healthy:        TRUE 
+    H2O Connection ip:          localhost 
+    H2O Connection port:        54321 
+    H2O Connection proxy:       NA 
+    H2O Internal Security:      FALSE 
+    R Version:                  R version 3.3.3 (2017-03-06) 
+
+
+> options(scipen=20)
+
+> #nao ler toda hora
+> if (!file.exists("dadosOriginalCSV")) {
++   dadosOriginalCSV <- readData();
++   
++ }
+
+> treino <- getTreinoData(dadosOriginalCSV)
+
+> validacao <- getValidacaoData(dadosOriginalCSV)
+
+> teste <- getTesteData(dadosOriginalCSV)
+
+> treino.hex  <- as.h2o(treino) # convertendo df para formato h2o
+  |======================================================================================================================================| 100%
+
+> validacao.hex  <- as.h2o(validacao) 
+  |======================================================================================================================================| 100%
+
+> teste.hex  <- as.h2o(teste) 
+  |======================================================================================================================================| 100%
+
+> x <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,"posicao", "ts_per", "eFG_per","ASTPer", "TurPer", "FTPer", "FG_per", "PirPer", "minutos_pa ..." ... [TRUNCATED] 
+
+> y <- "posicao"
+
+> max_depth_opts = c(3, 5, 9)
+
+> sample_rate_opts = c(0.8, 1.0)
+
+> col_sample_rate_opts = c(0.2, 0.5, 1.0)
+
+> ntrees_opts = c(10, 200)
+
+> learn_rate_opts = c(0.1, 0.01)
+
+> # specify the list of paramters
+> 
+> hyper_parametersRF = list(ntrees = ntrees_opts, mtries = 7, max_depth = max_depth_opts)
+
+> gridRF <- h2o.grid("randomForest", grid_id="randomForest_grid_test", 
++                    x=x, 
++                    y=y, 
++                    tra .... [TRUNCATED] 
+  |======================================================================================================================================| 100%
+
+> RF_sorted_grid <- h2o.getGrid(grid_id = "randomForest_grid_test", sort_by = "accuracy", decreasing = TRUE)
+
+> print (RF_sorted_grid)
+H2O Grid Details
+================
+
+Grid ID: randomForest_grid_test 
+Used hyper parameters: 
+  -  max_depth 
+  -  mtries 
+  -  ntrees 
+Number of models: 15 
+Number of failed models: 0 
+
+Hyper-Parameter Search Summary: ordered by decreasing accuracy
+   max_depth mtries ntrees                       model_ids           accuracy
+1          9      7     50  randomForest_grid_test_model_5 0.7034574468085106
+2          9      7     10  randomForest_grid_test_model_2 0.7021276595744681
+3          9      7    200 randomForest_grid_test_model_17 0.7021276595744681
+4          9      7    100 randomForest_grid_test_model_11 0.7007978723404256
+5          9      7     10  randomForest_grid_test_model_8 0.6928191489361701
+6          5      7    200 randomForest_grid_test_model_16 0.6861702127659575
+7          3      7    200 randomForest_grid_test_model_15 0.6848404255319149
+8          5      7    100 randomForest_grid_test_model_10 0.6821808510638299
+9          3      7     50  randomForest_grid_test_model_3 0.6795212765957447
+10         5      7     50  randomForest_grid_test_model_4  0.675531914893617
+11         5      7     10  randomForest_grid_test_model_7 0.6742021276595744
+12         5      7     10  randomForest_grid_test_model_1 0.6675531914893618
+13         3      7    100  randomForest_grid_test_model_9 0.6648936170212766
+14         3      7     10  randomForest_grid_test_model_6 0.6555851063829787
+15         3      7     10  randomForest_grid_test_model_0 0.6476063829787234
+
+> # Grab the model_id based in AUC
+> best_RF_model_id <- gridRF@model_ids[[1]]
+
+> # The best model
+> best_RF <- h2o.getModel(best_RF_model_id)
+
+> h2o.confusionMatrix(best_RF, valid = TRUE, metrics = 'accuracy')
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         26          2       6       1    1 0.2778 =  10 / 36
+AlaArmador   7          6       0       3    0 0.6250 =  10 / 16
+AlaPivo      5          0      15       0    4 0.3750 =   9 / 24
+Armador      3          2       0      23    0 0.1786 =   5 / 28
+Pivo         2          0       3       0   32 0.1351 =   5 / 37
+Totals      43         10      24      27   37 0.2766 = 39 / 141
+
+> scoring_history <- as.data.frame(best_RF@model$scoring_history)
+
+> plot(scoring_history$number_of_trees, scoring_history$training_MSE, type="p") #training mse
+
+> ## get the actual number of trees
+> ntrees <- best_RF@model$model_summary$number_of_trees
+
+> print(ntrees)
+[1] 200
+
+> my_varimpRF <- h2o.varimp(best_RF)
+
+> barplot(my_varimpRF$scaled_importance,
++         names.arg = my_varimpRF$variable,
++         space = 1,
++         las = 2,
++         main = "Variabl ..." ... [TRUNCATED] 
+
+> p <- ggplot(data = my_varimpRF, aes(x = variable, y =scaled_importance ))
+
+> p <- p + geom_bar(stat = "identity")
+
+> p <- p + coord_flip()
+
+> p
+
+> model = best_RF
+
+> pred2 = h2o.predict(object = model, newdata = teste.hex)
+  |======================================================================================================================================| 100%
+
+> dataset_pred = as.data.frame(pred2)
+
+> final <- cbind(dataset_pred, teste ) 
+
+> erro =  sqldf( "select * from final where predict != posicao")
+
+> perf <- h2o.performance(model, teste.hex)
+
+> h2o.confusionMatrix(perf)
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         26          1       4       2    2 0.2571 =   9 / 35
+AlaArmador   6          6       0       1    0 0.5385 =   7 / 13
+AlaPivo      4          0      12       0    5 0.4286 =   9 / 21
+Armador      3          1       0      21    0 0.1600 =   4 / 25
+Pivo         1          0       2       0   24 0.1111 =   3 / 27
+Totals      40          8      18      24   31 0.2645 = 32 / 121
+
+> # Summary of the best model
+> summary(pred2, exact_quantiles=TRUE)
+ predict        Ala              AlaArmador         AlaPivo           Armador            Pivo              
+ Ala       :40  Min.   :0.0000   Min.   :0.000000   Min.   :0.00000   Min.   :0.000000   Min.   :0.000000  
+ Pivo      :31  1st Qu.:0.0591   1st Qu.:0.009153   1st Qu.:0.01560   1st Qu.:0.005465   1st Qu.:0.005221  
+ Armador   :24  Median :0.2771   Median :0.062505   Median :0.06655   Median :0.038488   Median :0.046240  
+ AlaPivo   :18  Mean   :0.2882   Mean   :0.126627   Mean   :0.16181   Mean   :0.194071   Mean   :0.229335  
+ AlaArmador: 8  3rd Qu.:0.4580   3rd Qu.:0.188059   3rd Qu.:0.25585   3rd Qu.:0.275020   3rd Qu.:0.390883  
+                Max.   :0.8421   Max.   :0.618459   Max.   :0.73258   Max.   :0.927459   Max.   :0.999969  
+
+> mean(pred2$predict==teste.hex$posicao)
+[1] 0.7355372

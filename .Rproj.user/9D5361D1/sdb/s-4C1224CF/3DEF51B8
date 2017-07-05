@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(sqldf)\natletasJogo <- read.csv(\"data/bancoatletasORIGINAL.csv\", sep = \";\" ,stringsAsFactors=FALSE)\n\n\n#retirando jogadores com jogos por temporada\natletas <- sqldf(\"SELECT id_jogador, nome_temporada, count(id_partida)  as totalpartida from atletasJogo group by nome_temporada, id_jogador\") \natletas <- atletas[atletas$totalpartida > 10,]\n\natletas10 <- sqldf(\"SELECT *  from atletasJogo aj inner join atletas a on aj.id_jogador = a.id_jogador  and aj.nome_temporada = a.nome_temporada\") \n\n#retirando jogadores com pouca produtividade\n\natletasProdutividade <- atletas10[atletas10$pontos_total_jogador >=3,]\natletasProdutividade <- atletasProdutividade[atletasProdutividade$rebotes_total_jogador >=1,]\natletasProdutividade <- atletasProdutividade[atletasProdutividade$faltas_cometidas_jogador >=1,]\n\n#retirando jogadores que jogaram poucas temporadas \natletas <- sqldf(\"SELECT id_jogador  as totalpartida from atletasJogo group by nome_temporada, id_jogador\") \n\natletas <- count(atletas)\n\natletas <-  atletas[atletas$freq > 4,]\n\natletasIDJ <-atletas$totalpartida\n\natletasProdutividadeFinal <- subset(atletasProdutividade, id_jogador %in% atletasIDJ)\n\nwrite.csv(atletasProdutividadeFinal, file = \"data/bancoatletasProdutivo.csv\")\n\n",
+    "created" : 1498488402383.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3914054135",
+    "id" : "3DEF51B8",
+    "lastKnownWriteTime" : 1498494235,
+    "last_content_update" : 1498494235898,
+    "path" : "~/Downloads/MDM/MDM Predict 5p/scripts/Normalizacao.R",
+    "project_path" : "scripts/Normalizacao.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,169 @@
+Starting H2O JVM and connecting: ... Connection successful!
+
+R is connected to the H2O cluster: 
+    H2O cluster uptime:         4 seconds 514 milliseconds 
+    H2O cluster version:        3.10.4.6 
+    H2O cluster version age:    2 months and 7 days  
+    H2O cluster name:           H2O_started_from_R_wellrangel_egi310 
+    H2O cluster total nodes:    1 
+    H2O cluster total memory:   0.89 GB 
+    H2O cluster total cores:    4 
+    H2O cluster allowed cores:  4 
+    H2O cluster healthy:        TRUE 
+    H2O Connection ip:          localhost 
+    H2O Connection port:        54321 
+    H2O Connection proxy:       NA 
+    H2O Internal Security:      FALSE 
+    R Version:                  R version 3.3.3 (2017-03-06) 
+
+
+> options(scipen=20)
+
+> #nao ler toda hora
+> if (!file.exists("dadosOriginalCSV")) {
++   dadosOriginalCSV <- readData();
++   
++ }
+
+> treino <- getTreinoData(dadosOriginalCSV)
+
+> validacao <- getValidacaoData(dadosOriginalCSV)
+
+> teste <- getTesteData(dadosOriginalCSV)
+
+> treino.hex  <- as.h2o(treino) # convertendo df para formato h2o
+  |=======================================================================================================| 100%
+
+> validacao.hex  <- as.h2o(validacao) 
+  |=======================================================================================================| 100%
+
+> teste.hex  <- as.h2o(teste) 
+  |=======================================================================================================| 100%
+
+> x <- setdiff(names(dadosOriginalCSV), c(dadosOriginalCSV,"posicao",  "minutos_partida", "pontos_time_casa","pontos_time_fora", "idade", "id_jogador" .... [TRUNCATED] 
+
+> y <- "posicao"
+
+> # "ts_per", "eFG_per","ASTPer", "TurPer", "FTPer", "FG_per", "PirPer",
+> max_depth_opts = c(3, 5, 9)
+
+> sample_rate_opts = c(0.8, 1.0)
+
+> col_sample_rate_opts = c(0.2, 0.5, 1.0)
+
+> ntrees_opts = c(10, 200)
+
+> learn_rate_opts = c(0.1, 0.01)
+
+> # specify the list of paramters
+> 
+> hyper_parametersRF = list(ntrees = ntrees_opts, mtries = 7, max_depth = max_depth_opts)
+
+> gridRF <- h2o.grid("randomForest", grid_id="randomForest_grid_test", 
++                    x=x, 
++                    y=y, 
++                    tra .... [TRUNCATED] 
+  |=======================================================================================================| 100%
+
+> RF_sorted_grid <- h2o.getGrid(grid_id = "randomForest_grid_test", sort_by = "accuracy", decreasing = TRUE)
+
+> print (RF_sorted_grid)
+H2O Grid Details
+================
+
+Grid ID: randomForest_grid_test 
+Used hyper parameters: 
+  -  max_depth 
+  -  mtries 
+  -  ntrees 
+Number of models: 6 
+Number of failed models: 0 
+
+Hyper-Parameter Search Summary: ordered by decreasing accuracy
+  max_depth mtries ntrees                      model_ids           accuracy
+1         9      7    200 randomForest_grid_test_model_5 0.7220744680851063
+2         5      7    200 randomForest_grid_test_model_4 0.6968085106382979
+3         9      7     10 randomForest_grid_test_model_2 0.6835106382978724
+4         5      7     10 randomForest_grid_test_model_1 0.6808510638297872
+5         3      7     10 randomForest_grid_test_model_0 0.6648936170212766
+6         3      7    200 randomForest_grid_test_model_3 0.6582446808510638
+
+> # Grab the model_id based in AUC
+> best_RF_model_id <- gridRF@model_ids[[1]]
+
+> # The best model
+> best_RF <- h2o.getModel(best_RF_model_id)
+
+> h2o.confusionMatrix(best_RF, valid = TRUE, metrics = 'accuracy')
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         26          3       4       1    2 0.2778 =  10 / 36
+AlaArmador   6          5       0       4    1 0.6875 =  11 / 16
+AlaPivo      5          1      12       0    6 0.5000 =  12 / 24
+Armador      3          1       0      24    0 0.1429 =   4 / 28
+Pivo         2          0       3       0   32 0.1351 =   5 / 37
+Totals      42         10      19      29   41 0.2979 = 42 / 141
+
+> scoring_history <- as.data.frame(best_RF@model$scoring_history)
+
+> plot(scoring_history$number_of_trees, scoring_history$training_MSE, type="p") #training mse
+
+> ## get the actual number of trees
+> ntrees <- best_RF@model$model_summary$number_of_trees
+
+> print(ntrees)
+[1] 200
+
+> my_varimpRF <- h2o.varimp(best_RF)
+
+> barplot(my_varimpRF$scaled_importance,
++         names.arg = my_varimpRF$variable,
++         space = 1,
++         las = 2,
++         main = "Variabl ..." ... [TRUNCATED] 
+
+> p <- ggplot(data = my_varimpRF, aes(x = variable, y =scaled_importance ))
+
+> p <- p + geom_bar(stat = "identity")
+
+> p <- p + coord_flip()
+
+> p
+
+> model = best_RF
+
+> pred2 = h2o.predict(object = model, newdata = teste.hex)
+  |=======================================================================================================| 100%
+
+> dataset_pred = as.data.frame(pred2)
+
+> final <- cbind(dataset_pred, teste ) 
+
+> erro =  sqldf( "select * from final where predict != posicao")
+
+> perf <- h2o.performance(model, teste.hex)
+
+> h2o.confusionMatrix(perf)
+Confusion Matrix: vertical: actual; across: predicted
+           Ala AlaArmador AlaPivo Armador Pivo  Error       Rate
+Ala         28          1       2       3    1 0.2000 =   7 / 35
+AlaArmador   5          7       0       0    1 0.4615 =   6 / 13
+AlaPivo      5          0      11       0    5 0.4762 =  10 / 21
+Armador      3          1       0      21    0 0.1600 =   4 / 25
+Pivo         1          0       2       0   24 0.1111 =   3 / 27
+Totals      42          9      15      24   31 0.2479 = 30 / 121
+
+> # Summary of the best model
+> summary(pred2, exact_quantiles=TRUE)
+ predict        Ala               AlaArmador        AlaPivo           Armador           Pivo             
+ Ala       :42  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+ Pivo      :31  1st Qu.:0.06743   1st Qu.:0.01692   1st Qu.:0.03352   1st Qu.:0.01009   1st Qu.:0.01329  
+ Armador   :24  Median :0.27509   Median :0.08415   Median :0.08900   Median :0.04505   Median :0.07692  
+ AlaPivo   :15  Mean   :0.28461   Mean   :0.12966   Mean   :0.16000   Mean   :0.19274   Mean   :0.23299  
+ AlaArmador: 9  3rd Qu.:0.49001   3rd Qu.:0.19375   3rd Qu.:0.22517   3rd Qu.:0.25889   3rd Qu.:0.40515  
+                Max.   :0.76860   Max.   :0.53589   Max.   :0.60758   Max.   :0.89814   Max.   :0.99151  
+
+> mean(pred2$predict==teste.hex$posicao)
+[1] 0.7520661
+
+> #h2o.shutdown(prompt=FALSE)
